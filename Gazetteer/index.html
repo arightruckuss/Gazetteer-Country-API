@@ -11,8 +11,9 @@
 
 </head>
 <body onload="countryList()">
+    
     <!--Map container-->
-    <div id="mapid"></div>
+    <div id="map"></div>
 
     <!--Nav Bar-->
     <nav class="navbar navbar-dark bg-dark" id="navBar">
@@ -22,34 +23,49 @@
         <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">Country</label>
         </div>
-        <select class="custom-select" id="inputGroupSelect01">
-            <option id="json_result">Select</option>
+        <select class="custom-select" id="json_result">
+            <option>Select</option>
         </select>
 
         </div>
     </nav>
 
-    <!--Menu-->
+        <!--Menu-->
    <div id="menuButton" onclick="menuButton()"> Menu
-        <p></p>
-        <p></p>
-        <p></p>
-    </div>
+    <p></p>
+    <p></p>
+    <p></p>
+</div>
 
-    <!--Map choice-->
-    <div id="mapChoice">
-        <h5 class="boxTitle">Terrain</h5>
-        
-        <input type="radio" id="satelliteMap" name="maps" onload="satelliteMap()" onclick="satelliteMap()"> Satellite</button><br>
-        <input type="radio" id="streetMap" name="maps" onclick="streetMap()"> Street</button><br>
-        <input type="radio" id="lightMap" name="maps" onclick="lightMap()"> Light</button><br>
-        <input type="radio" id="blackWhiteMap" name="maps" onclick="blackWhiteMap()"> Black & White</button><br>
-    </div>
+<!--Map choice-->
+<div id="mapChoice">
+    <h5 class="boxTitle">Terrain</h5>
+    
+    <input type="radio" id="satelliteMap" name="maps" onload="satelliteMap()" onclick="satelliteMap()" onchange="zeroMeter()"> Satellite</button><br>
+    <input type="radio" id="streetMap" name="maps" onclick="streetMap()" onchange="zeroMeter()"> Street</button><br>
+    <input type="radio" id="lightMap" name="maps" onclick="lightMap()" onchange="zeroMeter()"> Light</button><br>
+    <input type="radio" id="blackWhiteMap" name="maps" onclick="blackWhiteMap()" onchange="zeroMeter()"> Black & White</button><br><br>
+    <input type="radio" id="hillShadeMap" name="maps" onclick="hillShadeMap()"> Hill Shade</button><br>
+    <meter id="hillMeter" value="0" max="12"></meter>
 
+    <h5 class="boxTitle">Weather</h5>
+    <input type="radio" id="precipitationMap" name="maps" onclick="precipitationMap()" onchange="zeroMeter()"> Precipitation</button><br>
+    <meter id="precipitationMeter" value="0" max="8"></meter><hr>
+    <input type="radio" id="precipitationMap" name="maps" onclick="cloudMap()" onchange="zeroMeter()"> Cloud Cover</button><br>
+    <meter id="cloudMeter" value="0" max="12"></meter><hr>
+    <input type="radio" id="precipitationMap" name="maps" onclick="tempMap()" onchange="zeroMeter()"> Temperture</button><br>
+    <meter id="tempMeter" value="0" max="8"></meter>
+</div>
+
+
+
+    <script src="jquery.js"></script>
     <script src="bootstrap-4.0.0/js/bootstrap.js"></script>
     <script src="bootstrap-4.0.0/js/bootstrap.bundle.js"></script>
     <script src="leaflet/leaflet.js"></script>
+    <script src="borders.js"></script>
     <script src="js/gazetteerjs.js"></script>
-    <script src="jquery.js"></script>
+
+
 </body>
 </html>
