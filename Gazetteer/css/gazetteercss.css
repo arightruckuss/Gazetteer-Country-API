@@ -68,7 +68,7 @@
     border: 1px solid black;
     padding: 4px;
     font-family: "Times New Roman", Times, serif;
-    /*display: none;*/
+    display: none;
 }
 
 .boxTitle {
