@@ -1,0 +1,71 @@
+/*HTML*/
+
+#navBar {
+    width: 100%;
+    height: 75px;
+}
+
+.navbar {
+    background-color: #9ab3f5!important;
+    border: 4px solid #8278c7;
+}
+
+#gazetteerTitle {
+    color: #150485;
+    font-size: 32px;
+    opacity: 0.8;
+    font-weight: bold;
+    font-family: 'Happy Monkey', cursive;
+    margin-left: -10px;
+    letter-spacing: .1em;
+}
+
+#countrySelect {
+    float: right;
+    width: 50%;
+    margin-right: -20px;
+    top: 4px;
+    right: 5px;
+}
+
+/*Map*/
+#map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: -2px;
+    right: -2px;
+    z-index: -1;
+}
+
+.invisible-scrollbar ::-webkit-scrollbar {
+    display: none;
+  }
+
+#countryInfoBox {
+    position: absolute;
+    top: 120px;
+    left: 40%;
+    background-color: #d0d7eb;
+    border-radius: 15px;
+    border: 5px solid #8278c7;
+    padding: 4px;
+    font-family: 'Happy Monkey', cursive;
+    display: none;
+    opacity: 0.9;
+}
+
+hr { 
+    position: relative; 
+    top: -15px; 
+    height: 5px; 
+    margin-bottom: -10px; 
+} 
+
+
+span {
+    font-weight: bold;
+    font-style: normal;
+    color: green;
+}
+

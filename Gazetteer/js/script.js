@@ -3,12 +3,29 @@ var map = L.map('map', {
     zoom: 5,
 })
 
-L.tileLayer('https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=wJnNNBBw35SQm7Zc7Ptd', {
+L.tileLayer('https://api.maptiler.com/maps/bright/{z}/{x}/{y}.png?key=wJnNNBBw35SQm7Zc7Ptd', {
+    attribution: '&copy; contributors: <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
     minZoom: 2,
     tileSize: 512,
     zoomOffset: -1,
-    }).addTo(map);     
+    }).addTo(map); 
+
+var baselayers = {
+    "Satellite Map": L.tileLayer('https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=wJnNNBBw35SQm7Zc7Ptd'),
+    "White Map": L.tileLayer('https://api.maptiler.com/maps/bright/{z}/{x}/{y}.png?key=wJnNNBBw35SQm7Zc7Ptd'),
+    "Black Map": L.tileLayer('https://api.maptiler.com/maps/toner/{z}/{x}/{y}.png?key=wJnNNBBw35SQm7Zc7Ptd'), 
+    "Colors Map": L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=wJnNNBBw35SQm7Zc7Ptd'),
+    "Hill Shade": L.tileLayer('https://api.maptiler.com/tiles/hillshades/{z}/{x}/{y}.png?key=wJnNNBBw35SQm7Zc7Ptd'),
+    "Hill Shade": L.tileLayer('https://api.maptiler.com/tiles/hillshades/{z}/{x}/{y}.png?key=wJnNNBBw35SQm7Zc7Ptd'),
+    "Precipitation": L.tileLayer('https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=513dd1747f3b4fd4eeb27d17169c8593'),
+    "Cloud Cover": L.tileLayer('https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=513dd1747f3b4fd4eeb27d17169c8593'),
+    "Land Temp": L.tileLayer('https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=513dd1747f3b4fd4eeb27d17169c8593')
+};
+
+var overlays = {};
+
+L.control.layers(baselayers, overlays, {position: 'bottomleft'}).addTo(map);
 
 //Current location
 if (navigator.geolocation) {
@@ -16,12 +33,12 @@ if (navigator.geolocation) {
       latit = position.coords.latitude;
       longit = position.coords.longitude;
       var greenIcon = L.icon({
-        iconUrl: 'images/green_location.png',
-        iconSize:     [45, 55],
-        iconAnchor:   [22, 55],
+        iconUrl: 'images/home_location.png',
+        iconSize:     [60, 60],
+        iconAnchor:   [30, 60],
     })
 
-    L.marker([latit, longit], {icon: greenIcon}).addTo(map);
+    L.marker([latit, longit], {icon: greenIcon}).bindTooltip("Home Sweet Home!").addTo(map);
     map.panTo(new L.LatLng(latit, longit));
     var offset = map.getSize().x*-0.20;
     map.panBy(new L.Point(-offset, 0), {animate: false});
@@ -46,122 +63,6 @@ function hideButton() {
         x.style.display = "none";
     }
     }
-
-//Menu box display
-function menuButton() {
-    var x = document.getElementById("mapChoice");
-    if (x.style.display == "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-  }
-
-//Display map functions
-function satelliteMap(){
-    L.tileLayer('https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=wJnNNBBw35SQm7Zc7Ptd', {
-        maxZoom: 18,
-        minZoom: 2,
-        tileSize: 512,
-        zoomOffset: -1,
-        }).addTo(map);
-    }
-
-function streetMap(){
-    L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=wJnNNBBw35SQm7Zc7Ptd', {
-        maxZoom: 18,
-        minZoom: 2,
-        tileSize: 512,
-        zoomOffset: -1,
-        }).addTo(map);
-}
-
-function lightMap(){
-    L.tileLayer('https://api.maptiler.com/maps/bright/{z}/{x}/{y}.png?key=wJnNNBBw35SQm7Zc7Ptd', {
-        maxZoom: 18,
-        minZoom: 2,
-        tileSize: 512,
-        zoomOffset: -1,
-        }).addTo(map);
-}
-
-function blackWhiteMap(){
-    L.tileLayer('https://api.maptiler.com/maps/toner/{z}/{x}/{y}.png?key=wJnNNBBw35SQm7Zc7Ptd', {
-        maxZoom: 18,
-        minZoom: 2,
-        tileSize: 512,
-        zoomOffset: -1,
-        }).addTo(map);
-}
-
-//Map shading and values
-function hillShadeMap(){
-    L.tileLayer('https://api.maptiler.com/tiles/hillshades/{z}/{x}/{y}.png?key=wJnNNBBw35SQm7Zc7Ptd', {
-        maxZoom: 18,
-        minZoom: 2,
-        tileSize: 512,
-        zoomOffset: -1,
-        }).addTo(map);
-
-        var value = parseInt(document.getElementById('hillMeter').value, 12);
-        value = isNaN(value) ? value : value;
-        value++;
-        document.getElementById('hillMeter').value = value;
-}
-    
-    
-function precipitationMap(){
-    L.tileLayer('https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=513dd1747f3b4fd4eeb27d17169c8593', {
-        maxZoom: 18,
-        minZoom: 2,
-        tileSize: 512,
-        zoomOffset: -1,
-        }).addTo(map);
-    
-        var value = parseInt(document.getElementById('precipitationMeter').value, 8);
-        value = isNaN(value) ? value : value;
-        value++;
-        document.getElementById('precipitationMeter').value = value;
-}
-
-function cloudMap(){
-    L.tileLayer('https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=513dd1747f3b4fd4eeb27d17169c8593', {
-        maxZoom: 18,
-        minZoom: 2,
-        tileSize: 512,
-        zoomOffset: -1,
-        }).addTo(map);
-        
-        var value = parseInt(document.getElementById('cloudMeter').value, 12);
-        value = isNaN(value) ? value : value;
-        value++;
-        document.getElementById('cloudMeter').value = value; 
-    }
-
-function tempMap(){
-    L.tileLayer('https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=513dd1747f3b4fd4eeb27d17169c8593', {
-        maxZoom: 18,
-        minZoom: 2,
-        tileSize: 512,
-        zoomOffset: -1,
-        }).addTo(map);
-
-        var value = parseInt(document.getElementById('tempMeter').value, 8);
-        value = isNaN(value) ? value : value;
-        value++;
-        document.getElementById('tempMeter').value = value; 
-    }
-
-function showMapChoice() {
-        document.getElementById("mapChoice").style.visibility = "visible";
-}
-
-function zeroMeter(){
-    document.getElementById('hillMeter').value = 1;
-    document.getElementById('precipitationMeter').value = 1;
-    document.getElementById('cloudMeter').value = 1;
-    document.getElementById('tempMeter').value = 1; 
-}
 
 //Dropdown country list
 $.getJSON('php/getCountryList.php', function(data) {
@@ -188,8 +89,46 @@ $(document).change(function() {
                     if(result['data'][i]['code'] == $listCountryCode){
                         $countryName = result['data'][i]['name'];
                         $countryCode = result['data'][i]['code'];
-                        $countryGeometry = result['data'][i]['geometry'];
+
                         $('#txtCountry').html($countryName);
+
+                        var geojsonFeature1 = result['data'][i]['geometry'][0];
+                        var geojsonFeature2 = result['data'][i]['geometry'][0][0];
+
+                        //IF STATEMENTS DO NOT WORK TOGETHER FOR ALL THE MAP BORDERS
+                        if(geojsonFeature1 = geojsonFeature1){
+                            var myLines1 = [{
+                                "type": "LineString",
+                                "coordinates": geojsonFeature1
+                            }];
+                            var myStyle1 = {
+                                "color": "purple",
+                                "weight": 5,
+                                "opacity": 0.65
+                            };
+                            
+                            L.geoJSON(myLines1, {
+                                style: myStyle1
+                            }).addTo(map);
+                        }
+                        /* WORKS ON ITS OWN IF geojsonFeature1 if statment is commented out
+                        if(geojsonFeature2 = geojsonFeature2){
+                            var myLines2 = [{
+                                "type": "LineString",
+                                "coordinates": geojsonFeature2
+                            }];
+                            var myStyle2 = {
+                                "color": "purple",
+                                "weight": 5,
+                                "opacity": 0.65
+                            };
+                            
+                            L.geoJSON(myLines2, {
+                                style: myStyle2
+                            }).addTo(map);
+                        }*/
+
+
 
     $.ajax({
         url: "php/getCountryInfo.php",
@@ -218,7 +157,7 @@ $(document).change(function() {
         type: 'POST',
         dataType: 'json',
         data: {
-            country: $countryName,
+            country: $countryCode,
         },
         success: function(result) {
 
@@ -236,24 +175,35 @@ $(document).change(function() {
         type: 'POST',
         dataType: 'json',
         data: {
-            country: $countryName,
+            country: $countryCode,
         },
         success: function(result) {
 
             if (result.status.name == "ok") {
-                $countryLat = result['data']['lat'];
-                $countryLng = result['data']['lon'];
+                $countryLat = result['data'][1][0]['latitude'];
+                $countryLng = result['data'][1][0]['longitude'];
 
                 var locationMarker = L.icon({
                     iconUrl: 'images/location_marker.png',
-                    iconSize:     [45, 55],
-                    iconAnchor:   [32, 65],
+                    iconSize:     [60, 60],
+                    iconAnchor:   [30, 60],
+                    popupAnchor: [2,-40],
                 })
-                
-                L.marker([$countryLat, $countryLng], {icon: locationMarker}).addTo(map);
-                map.panTo(new L.LatLng($countryLat, $countryLng));
-                var offset = map.getSize().x*-0.20;
-                map.panBy(new L.Point(-offset, 0), {animate: false});
+
+
+                map.panTo(new L.LatLng($countryLat, $countryLng), {draggable:false});
+
+                var marker =  L.marker([$countryLat, $countryLng], {icon: locationMarker}).bindTooltip($countryName).addTo(map);
+        
+                map.on('move', function (e) {
+                    if (marker) {
+                      map.removeLayer(marker);
+                    }
+                    marker = L.marker([$countryLat, $countryLng], {icon: locationMarker}).bindTooltip($countryName).addTo(map);
+                    
+                    }
+                );
+
          }},
         error: function(jqXHR, textStatus, errorThrown) {
         }});
@@ -263,7 +213,7 @@ $(document).change(function() {
         type: 'POST',
         dataType: 'json',
         data: {
-            country: $countryName,
+            country: $countryCode,
         },
         success: function(result) {
 
@@ -277,18 +227,6 @@ $(document).change(function() {
         }},
         error: function(jqXHR, textStatus, errorThrown) {
         }});
-
-        //ERROR Invalid geoJSON object
-        $borders = L.geoJSON($countryGeometry).addTo(map);
-        var myStyle = {
-            "color": "#ff7800",
-            "weight": 5,
-            "opacity": 0.65
-        };
-        
-        L.geoJSON($borders, {
-            style: myStyle
-        }).addTo(map);
 
 }}}},  
 error: function(jqXHR, textStatus, errorThrown) {
