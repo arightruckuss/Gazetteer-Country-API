@@ -69,3 +69,11 @@ span {
     color: green;
 }
 
+#flag {
+    margin-right: 400px;
+}
+
+.btn btn-primary dropdown-toggle {
+    background-color: #8278c7;
+}
+

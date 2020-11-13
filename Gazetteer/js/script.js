@@ -73,7 +73,7 @@ $.getJSON('php/getCountryList.php', function(data) {
         $('#countryList').append($('<option value='+ value +'>' + names + '</option>'));
          }
         });
- 
+
 //AJAX calls to PHP files
 $(document).change(function() {
     $listCountryCode = $("#countryList").val();
@@ -89,46 +89,15 @@ $(document).change(function() {
                     if(result['data'][i]['code'] == $listCountryCode){
                         $countryName = result['data'][i]['name'];
                         $countryCode = result['data'][i]['code'];
-
                         $('#txtCountry').html($countryName);
 
-                        var geojsonFeature1 = result['data'][i]['geometry'][0];
-                        var geojsonFeature2 = result['data'][i]['geometry'][0][0];
-
-                        //IF STATEMENTS DO NOT WORK TOGETHER FOR ALL THE MAP BORDERS
-                        if(geojsonFeature1 = geojsonFeature1){
-                            var myLines1 = [{
-                                "type": "LineString",
-                                "coordinates": geojsonFeature1
-                            }];
-                            var myStyle1 = {
-                                "color": "purple",
-                                "weight": 5,
-                                "opacity": 0.65
-                            };
-                            
-                            L.geoJSON(myLines1, {
-                                style: myStyle1
-                            }).addTo(map);
-                        }
-                        /* WORKS ON ITS OWN IF geojsonFeature1 if statment is commented out
-                        if(geojsonFeature2 = geojsonFeature2){
-                            var myLines2 = [{
-                                "type": "LineString",
-                                "coordinates": geojsonFeature2
-                            }];
-                            var myStyle2 = {
-                                "color": "purple",
-                                "weight": 5,
-                                "opacity": 0.65
-                            };
-                            
-                            L.geoJSON(myLines2, {
-                                style: myStyle2
-                            }).addTo(map);
-                        }*/
-
-
+                        $countryBorders = result['data'][i]['geometry'];
+                        console.log($countryBorders);
+                        L.geoJSON($countryBorders, {
+                            "color": "purple",
+                            "weight": 5,
+                            "opacity": 0.65
+                        }).addTo(map);
 
     $.ajax({
         url: "php/getCountryInfo.php",
