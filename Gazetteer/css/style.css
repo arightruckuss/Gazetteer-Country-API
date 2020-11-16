@@ -12,10 +12,9 @@
 
 #gazetteerTitle {
     color: #150485;
-    font-size: 32px;
     opacity: 0.8;
     font-weight: bold;
-    font-family: 'Happy Monkey', cursive;
+    font-family: 'Proza Libre', sans-serif;
     margin-left: -10px;
     letter-spacing: .1em;
 }
@@ -27,6 +26,7 @@
     top: 4px;
     right: 5px;
 }
+
 
 /*Map*/
 #map {
@@ -42,16 +42,15 @@
     display: none;
   }
 
-#countryInfoBox {
+.countryInfoBox {
     position: absolute;
-    top: 120px;
-    left: 40%;
+    top: 115px;
+    left: 125px;
     background-color: #d0d7eb;
     border-radius: 15px;
     border: 5px solid #8278c7;
     padding: 4px;
-    font-family: 'Happy Monkey', cursive;
-    display: none;
+    font-family: 'Roboto', sans-serif;
     opacity: 0.9;
 }
 
@@ -69,11 +68,70 @@ span {
     color: green;
 }
 
+#categoryOptions{
+    max-width: 123px;
+    border: 2px solid #8278c7;
+    border-radius: 5px;
+}
+
+.menuTitle {
+    text-align: center;
+    font-family: 'Proza Libre', sans-serif;
+    color: #150485;
+}
+
+button {
+    padding: 9px;
+}
+
+.list-group-item-action {
+    max-width: 125px!important;
+    font-family: 'Roboto', sans-serif;
+    color: #150485;
+}
+
+#categoryMenu {
+    display: none;
+}
+
+#countryInfo {
+    display: none;
+}
+
+#countryWeather {
+    display: none;
+}
+
+#countryCurrency {
+    display: none;
+}
+
+#countryNews {
+    display: none;
+}
+
+#countryAstronomy {
+    display: none;
+}
+
+#countryCovid {
+    display: none;
+}
+
+hr { 
+    height: 1px; 
+    background: #150485;
+} 
+
+#dotted {
+    border-top: 1px dashed #150485;
+}
+
 #flag {
-    margin-right: 400px;
+    position: relative;
+    bottom: 3px;
 }
 
-.btn btn-primary dropdown-toggle {
-    background-color: #8278c7;
+.leaflet-top.leaflet-right .leaflet-control-layers:nth-child(3) .leaflet-control-layers-toggle {
+    background-image: url('images/home_location.png');
 }
-

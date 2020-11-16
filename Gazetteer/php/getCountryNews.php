@@ -2,7 +2,7 @@
 
 	$executionStartTime = microtime(true) / 1000;
 
-	$url='https://restcountries.com/v2/alpha/' . $_REQUEST['country'] . '?fullText=true';
+	$url='http://api.datanews.io/v1/headlines?apiKey=041sbnamsosy6lf21yvxjzve4&language=en&country=' . $_REQUEST['country'];
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -22,7 +22,8 @@
 	$output['data'] = $decode;
 	
 	header('Content-Type: application/json; charset=UTF-8');
-
-	echo json_encode($output); 
+	header("Access-Control-Allow-Origin: *");
+    echo json_encode($output); 
+    
 
 ?>

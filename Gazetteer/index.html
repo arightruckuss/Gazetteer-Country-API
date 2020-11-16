@@ -3,21 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="bootstrap-4.0.0/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap-4.5.3-dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="leaflet/leaflet.css"/>
     <link rel='shortcut icon' type='image/x-icon' href='images/favicon.ico' />
-    <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&display=swap" rel="stylesheet"> 
-<title>Gazetteer</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Proza+Libre:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Proza+Libre:wght@700&display=swap" rel="stylesheet"><title>Gazetteer</title>
 
 </head>
 <body>
+    
     <!--Map container-->
     <div id="map" class="visible-scrollbar"></div>
 
     <!--Nav Bar-->
     <nav class="navbar navbar-dark bg-dark" id="navBar">
-        <h3 id="gazetteerTitle">Gazetteer</h3>
+        <h2 id="gazetteerTitle">Gazetteer</h2>
 
         <div class="input-group mb-3" id="countrySelect">
         <select class="custom-select" id="countryList">
@@ -25,11 +32,94 @@
         </div>
     </nav>
 
-    <script src="jquery.js"></script>
-    <script src="bootstrap-4.0.0/js/bootstrap.js"></script>
-    <script src="bootstrap-4.0.0/js/bootstrap.bundle.js"></script>
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" onclick="categoryMenu()">
+        Categories
+      </button>
+      <span id="categoryMenu">
+        <span class="list-group">
+            <button type="button" class="list-group-item list-group-item-action" onclick="countryInfo()">Country</button>
+            <button type="button" class="list-group-item list-group-item-action" onclick="countryWeather()">Weather</button>
+            <button type="button" class="list-group-item list-group-item-action" onclick="countryNews()">News</button>
+            <button type="button" class="list-group-item list-group-item-action" onclick="countryCurrency()">Currency</button>         
+            <button type="button" class="list-group-item list-group-item-action" onclick="countryAstronomy()">Astronomy</button>         
+            <button type="button" class="list-group-item list-group-item-action" onclick="countryCovid()">Covid</button>
+        </span>
+    </span>
+
+    <div class="countryInfoBox" id="countryInfo">
+        <h4 class="menuTitle" id="txtCountry">Country</h4>
+        <hr>
+        <p>Native Name: <span id="txtnativeName"></span></p>
+        <p>Capital: <span id="txtCapital"></span></p>
+        <p>Population: <span id="txtPopulation"></span></p>
+        <p>Language: <span id="txtlanguage"></span></p>
+        <p>Continent: <span id="txtContinent"></span></p>
+        <p>Sub Region: <span id="txtSubRegion"></span></p>
+        <p>ISO 2 Code: <span id="txtAlpha2Code"></span></p>
+        <p>ISO 3 Code: <span id="txtAlpha3Code"></span></p>
+        <p>Timezones: <span id="txtTimeZones"></span></p>
+        <p>UK Dial Code: <span id="txtDialCode"></span></p>
+    </div>
+
+    <div class="countryInfoBox" id="countryWeather">
+        <h4 class="menuTitle" id="txtWeather">Current Weather</h4>
+        <hr>
+        <p>Temp C: <span id="txtTempC"></span></p>
+        <p>Temp F: <span id="txtTempF"></span></p>
+        <p>Humidity: <span id="txtHumidity"></span></p>
+        <p>Wind MPH: <span id="txtWindMPH"></span></p>
+        <p>Wind KPH: <span id="txtWindKPH"></span></p>
+        <p>Feels Like C: <span id="txtFeelC"></span></p>
+        <p>Feels Like F: <span id="txtFeelF"></span></p>
+        <p>Condition: <span id="txtCondition"></span></p>
+    </div>
+
+    <div class="countryInfoBox" id="countryCurrency">
+        <h4 class="menuTitle" id="txtCurrency">Currency</h4>
+        <hr>
+        <p>Name: <span id="txtCurNme"></span></p>
+        <p>Code: <span id="txtCurCode"></span></p>
+        <p>Symbol: <span id="txtCurSymbol"></span></p>
+    </div>
+    
+    <div class="countryInfoBox" id="countryAstronomy">
+        <h4 class="menuTitle" id="txtAstronomy">Astronomy</h4>
+        <hr>
+        <p>Sunset: <span id="txtSunRise"></span></p>
+        <p>Sunrise: <span id="txtSunSet"></span></p>
+        <p>Moonrise: <span id="txtMoonRise"></span></p>
+        <p>Moonset: <span id="txtMoonSet"></span></p>
+        <p>Moon Phase: <span id="txtMoonPhase"></span></p>
+    </div>
+
+    <div class="countryInfoBox" id="countryCovid">
+        <h4 class="menuTitle" id="txtCovid">Covid</h4>
+        <hr>
+        <p>Confirmed: <span id="txtConfirmed"></span></p>
+        <p>Deaths: <span id="txtDead"></span></p>
+        <p>Recovered: <span id="txtRecovered"></span></p>
+        <p>Active: <span id="txtActive"></span></p>
+        <h5 class="menuTitle" id="txtCountry">World Total</h5>
+        <hr id="dotted">
+        <p>Confirmed: <span id="txtTConfirmed"></span></p>
+        <p>Deaths: <span id="txtTDead"></span></p>
+        <p>Recovered: <span id="txtTRecovered"></span></p>
+    </div>
+
+    <div class="countryInfoBox" id="countryNews">
+        <h4 class="menuTitle" id="txtCountry">Headlines</h4>
+        <hr>
+        <p id="txtHeadline1"></p>
+        <p id="txtHeadline2"></p>
+        <p id="txtHeadline3"></p>
+    </div>
+
+    <script src="jquery.js"></script>  
+    <script src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
+    <script src="bootstrap-4.5.3-dist/js/bootstrap.bundle.js"></script>
     <script src="leaflet/leaflet.js"></script>
     <script src="js/script.js"></script>
+    
 
 
 </body>

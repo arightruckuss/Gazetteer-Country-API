@@ -2,7 +2,7 @@
 
 	$executionStartTime = microtime(true) / 1000;
 
-	$url='https://restcountries.com/v2/alpha/' . $_REQUEST['country'] . '?fullText=true';
+	$url='https://api.covid19api.com/live/country/' . $_REQUEST['country'];
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -22,7 +22,7 @@
 	$output['data'] = $decode;
 	
 	header('Content-Type: application/json; charset=UTF-8');
-
+	header("Access-Control-Allow-Origin: *");
 	echo json_encode($output); 
 
 ?>
