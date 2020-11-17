@@ -43,6 +43,7 @@
             <button type="button" class="list-group-item list-group-item-action" onclick="countryCurrency()">Currency</button>         
             <button type="button" class="list-group-item list-group-item-action" onclick="countryAstronomy()">Astronomy</button>         
             <button type="button" class="list-group-item list-group-item-action" onclick="countryCovid()">Covid</button>
+            <button type="button" class="list-group-item list-group-item-action" onclick="countryPhoto()">Photos</button>
         </span>
     </span>
 
@@ -54,8 +55,6 @@
         <p>Population: <span id="txtPopulation"></span></p>
         <p>Language: <span id="txtlanguage"></span></p>
         <p>Continent: <span id="txtContinent"></span></p>
-        <p>Sub Region: <span id="txtSubRegion"></span></p>
-        <p>ISO 2 Code: <span id="txtAlpha2Code"></span></p>
         <p>ISO 3 Code: <span id="txtAlpha3Code"></span></p>
         <p>Timezones: <span id="txtTimeZones"></span></p>
         <p>UK Dial Code: <span id="txtDialCode"></span></p>
@@ -93,7 +92,7 @@
     </div>
 
     <div class="countryInfoBox" id="countryCovid">
-        <h4 class="menuTitle" id="txtCovid">Covid</h4>
+        <h4 class="menuTitle" id="txtCovid">Daily Covid</h4>
         <hr>
         <p>Confirmed: <span id="txtConfirmed"></span></p>
         <p>Deaths: <span id="txtDead"></span></p>
@@ -107,11 +106,20 @@
     </div>
 
     <div class="countryInfoBox" id="countryNews">
-        <h4 class="menuTitle" id="txtCountry">Headlines</h4>
+        <h4 class="menuTitle" id="txtNews">Headlines</h4>
         <hr>
         <p id="txtHeadline1"></p>
         <p id="txtHeadline2"></p>
         <p id="txtHeadline3"></p>
+    </div>
+
+    <div class="countryInfoBox" id="countryPhoto">
+        <h4 class="menuTitle" id="txtPhotos">Photos</h4>
+        <hr>
+        <p id="txtPhoto1"></p>
+        <p id="txtPhoto2"></p>
+        <p id="txtPhoto3"></p>
+
     </div>
 
     <script src="jquery.js"></script>  

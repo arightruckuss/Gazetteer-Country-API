@@ -1,6 +1,6 @@
 //initialize map
 var map = L.map('map', {
-    zoom: 4,
+    zoom: 3,
 })
 
 L.tileLayer('https://api.maptiler.com/maps/bright/{z}/{x}/{y}.png?key=wJnNNBBw35SQm7Zc7Ptd', {
@@ -20,15 +20,12 @@ var mapBaselayers = {
 
 var shadeBaselayers = {
     "Hill Shade": L.tileLayer('https://api.maptiler.com/tiles/hillshades/{z}/{x}/{y}.png?key=wJnNNBBw35SQm7Zc7Ptd'),
-    "Precipitation": L.tileLayer('https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=513dd1747f3b4fd4eeb27d17169c8593'),
+    "Rain Clouds": L.tileLayer('https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=513dd1747f3b4fd4eeb27d17169c8593'),
     "Cloud Cover": L.tileLayer('https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=513dd1747f3b4fd4eeb27d17169c8593'),
     "Land Temp": L.tileLayer('https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=513dd1747f3b4fd4eeb27d17169c8593')
 }
 
-var overlays = {};
-
-L.control.layers(mapBaselayers, overlays, {position: 'bottomleft'}).addTo(map);
-L.control.layers(shadeBaselayers, overlays, {position: 'bottomleft'}).addTo(map);
+L.control.layers(mapBaselayers, shadeBaselayers, {position: 'bottomleft'}).addTo(map);
 
 //Current location
 if (navigator.geolocation) {
@@ -48,7 +45,6 @@ if (navigator.geolocation) {
    
   })};
 
-//Display country info
 function categoryMenu() {
     var categories = document.getElementById("categoryMenu");
     if (categories.style.display == "block") {
@@ -69,13 +65,15 @@ var news = document.getElementById("countryNews");
 var currency = document.getElementById("countryCurrency");
 var astronomy = document.getElementById("countryAstronomy"); 
 var covid = document.getElementById("countryCovid");
+var photo = document.getElementById("countryPhoto");
 
 function countryInfo() {
     weather.style.display = "none";
     news.style.display = "none";
     currency.style.display = "none";
     astronomy.style.display = "none"; 
-    covid.style.display = "none";     
+    covid.style.display = "none"; 
+    photo.style.display = "none";     
     if (info.style.display == "block") {
         info.style.display = "none";
     } else {
@@ -88,7 +86,8 @@ function countryWeather() {
     news.style.display = "none";
     currency.style.display = "none";
     astronomy.style.display = "none"; 
-    covid.style.display = "none";   
+    covid.style.display = "none";
+    photo.style.display = "none";    
     if (weather.style.display == "block") {
         weather.style.display = "none";
     } else {
@@ -101,7 +100,8 @@ function countryNews() {
     weather.style.display = "none";
     currency.style.display = "none";
     astronomy.style.display = "none"; 
-    covid.style.display = "none";  
+    covid.style.display = "none"; 
+    photo.style.display = "none";  
     if (news.style.display == "block") {
         news.style.display = "none";
     } else {
@@ -114,7 +114,8 @@ function countryCurrency() {
     weather.style.display = "none";
     news.style.display = "none";
     astronomy.style.display = "none"; 
-    covid.style.display = "none";    
+    covid.style.display = "none";  
+    photo.style.display = "none";   
     if (currency.style.display == "block") {
         currency.style.display = "none";
     } else {
@@ -127,7 +128,8 @@ function countryAstronomy() {
     weather.style.display = "none";
     currency.style.display = "none"
     news.style.display = "none";
-    covid.style.display = "none";    
+    covid.style.display = "none"; 
+    photo.style.display = "none";    
     if (astronomy.style.display == "block") {
         astronomy.style.display = "none";
     } else {
@@ -140,11 +142,26 @@ function countryCovid() {
     weather.style.display = "none";
     currency.style.display = "none"
     news.style.display = "none";
-    astronomy.style.display = "none";    
+    astronomy.style.display = "none";  
+    photo.style.display = "none";   
     if (covid.style.display == "block") {
         covid.style.display = "none";
     } else {
         covid.style.display = "block";
+    }
+    }
+
+function countryPhoto() {
+    info.style.display = "none";
+    weather.style.display = "none";
+    currency.style.display = "none"
+    news.style.display = "none";
+    astronomy.style.display = "none";
+    covid.style.display == "none";    
+    if (photo.style.display == "block") {
+        photo.style.display = "none"; 
+    } else {
+        photo.style.display = "block";
     }
     }
 
@@ -333,7 +350,7 @@ $(document).change(function() {
             success: function(result) {
     
                 if (result.status.name == "ok") {
-                    $('#txtCovid').html('Covid ' + '<img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png" width="33" height="33"/>');
+                    $('#txtCovid').html('Daily Covid ' + '<img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png" width="33" height="33"/>');
                     $('#txtConfirmed').html(result['data'][0]['Confirmed']);
                     $('#txtDead').html(result['data'][0]['Deaths']);
                     $('#txtRecovered').html(result['data'][0]['Recovered']);
@@ -367,12 +384,41 @@ $(document).change(function() {
                 country: $countryISO2,
             },
             success: function(result) {
+                $('#txtNews').html('No Headlines Avaliable');
+                if (result.status.name == "ok") {
+                    if(result['data']['hits'][0] != undefined){
+                            $('#txtNews').html('Headlines ' + '<img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png" width="33" height="33"/>');
+                            $('#txtHeadline1').html(result['data']['hits'][0]['title']);
+                            $('#txtHeadline2').html(result['data']['hits'][1]['title']);
+                            $('#txtHeadline3').html(result['data']['hits'][2]['title']);
+                        } else {
+                            $('#txtNews').html('No Headlines Avaliable');
+                            $('#txtHeadline1').html('N/A');
+                            $('#txtHeadline2').html('');
+                            $('#txtHeadline3').html('');
+                       
+                    }
+                 }},
+            error: function(jqXHR, textStatus, errorThrown) {
+            }});
+        
+        $.ajax({
+            url: "php/getCountryPhoto.php",
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                country: $countryName,
+            },
+            success: function(result) {
     
                 if (result.status.name == "ok") {
-                    $('#txtNews').html('Weather ' + '<img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png" width="33" height="33"/>');
-                    $('#txtHeadline1').html(result['data']['hits'][0]['title']);
-                    $('#txtHeadline2').html(result['data']['hits'][1]['title']);
-                    $('#txtHeadline3').html(result['data']['hits'][2]['title']);
+                    $photo1 = result['data'][1]['webformatURL'];
+                    $photo2 = result['data'][2]['webformatURL'];
+                    $photo3 = result['data'][0]['webformatURL'];
+                    $('#txtPhotos').html('Photos'  + ' <img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png" width="33" height="33"/>');
+                    $('#txtPhoto1').html('<img id="photo1" src="' + $photo1 + '" height="150"/>');
+                    $('#txtPhoto2').html('<img id="photo2" src="' + $photo2 + '" height="150"/>');
+                    $('#txtPhoto3').html('<img id="photo3" src="' + $photo3 + '" height="150"/>');
                  }},
             error: function(jqXHR, textStatus, errorThrown) {
             }});
