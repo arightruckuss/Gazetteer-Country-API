@@ -1,0 +1,100 @@
+#map {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    bottom: 0px;
+    right: 0px;
+    z-index: -1;
+}
+
+#navBar {
+    width: 100%;
+    height: 75px;
+}
+
+.navbar {
+    background-color: #9ab3f5!important;
+    border: 4px solid #8278c7;
+}
+
+#gazetteerTitle {
+    color: #150485;
+    opacity: 0.8;
+    font-weight: bold;
+    font-family: 'Proza Libre', sans-serif;
+    margin-left: -10px;
+    letter-spacing: .1em;
+    font-size: 4vw;
+}
+
+#countrySelect {
+    float: right;
+    width: 50%;
+    margin-right: -20px;
+    top: 4px;
+    right: 5px;
+}
+
+.countryInfo {
+    position: absolute;
+    top: 20%;
+    background: lightgrey;
+    opacity: 0.8;
+    border: 2px solid #8278c7;
+    border-radius: 10px;
+}
+
+#countryInfo {
+    display: block;
+    margin-left: 10px;
+}
+
+#wondersIcon {
+    display: block;
+}
+
+#wcaminoIcon {
+    display: block;
+}
+
+.countryInfo button {
+    display: block;
+}
+
+.photos {
+    width: 180px; 
+    height: 130px;
+}
+
+img {
+    width: 50px; 
+    height: 50px;
+}
+ 
+button {
+    display: block;
+}
+
+.weatherChoice {
+    position: absolute;
+    top: 13%;
+    background: lightgrey;
+    opacity: 0.9;
+    border: 2px solid #8278c7;
+    border-radius: 10px;
+}
+
+.weatherChoice button {
+    display: block;
+    
+}
+
+.wondersIcon button {
+    position: absolute;
+    right: 10px;
+    bottom: 20px;
+    background: lightgrey;
+    opacity: 0.8;
+    border: 2px solid #8278c7;
+    border-radius: 10px;
+}

@@ -2,7 +2,7 @@
 
 	$executionStartTime = microtime(true) / 1000;
 
-	$url='https://api.covid19api.com/live/country/' . $_REQUEST['country'];
+	$url='https://corona.lmao.ninja/v2/countries/' . $_REQUEST['country'] . '?yesterday=true&strict=true&query';
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -23,6 +23,7 @@
 	
 	header('Content-Type: application/json; charset=UTF-8');
 	header("Access-Control-Allow-Origin: *");
-	echo json_encode($output); 
+    echo json_encode($output); 
+    
 
 ?>

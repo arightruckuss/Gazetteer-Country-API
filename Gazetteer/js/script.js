@@ -1,22 +1,39 @@
-//initialize map
-var map = L.map('map', {
-    zoom: 3,
-})
+//initialize map and layer
+var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 18,
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	}),
+	latlng = L.latLng(50.5, 30.51);
 
-L.tileLayer('https://api.maptiler.com/maps/bright/{z}/{x}/{y}.png?key=wJnNNBBw35SQm7Zc7Ptd', {
-    attribution: '&copy; contributors: <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    minZoom: 2,
-    tileSize: 512,
-    zoomOffset: -1,
-    }).addTo(map); 
+var map = L.map('map', {zoomControl: false, center: latlng, zoom: 2, layers: [tiles]});
 
+//Find current location
+if (navigator.geolocation) {
+	navigator.geolocation.getCurrentPosition(function(position) {
+	latit = position.coords.latitude;
+	longit = position.coords.longitude;
+	var homeIcon = L.icon({
+		iconUrl: 'images/home_location.png',
+		iconSize:     [60, 60],
+		iconAnchor:   [30, 60],
+	})
+
+	var home = L.marker([latit, longit], {icon: homeIcon}).bindTooltip("Home Sweet Home!").addTo(map);
+	
+	/*map.panTo(new L.LatLng(latit, longit));
+	var offset = map.getSize().x*-0.20;
+	map.panBy(new L.Point(-offset, 0), {animate: false});*/
+})};
+
+//Map layers
 var mapBaselayers = {
     "Satellite Map": L.tileLayer('https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=wJnNNBBw35SQm7Zc7Ptd'),
     "White Map": L.tileLayer('https://api.maptiler.com/maps/bright/{z}/{x}/{y}.png?key=wJnNNBBw35SQm7Zc7Ptd'),
     "Black Map": L.tileLayer('https://api.maptiler.com/maps/toner/{z}/{x}/{y}.png?key=wJnNNBBw35SQm7Zc7Ptd'), 
     "Colors Map": L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=wJnNNBBw35SQm7Zc7Ptd'),
 };
+
+L.control.layers(mapBaselayers, null, {position: 'bottomleft'}).addTo(map);
 
 var shadeBaselayers = {
     "Hill Shade": L.tileLayer('https://api.maptiler.com/tiles/hillshades/{z}/{x}/{y}.png?key=wJnNNBBw35SQm7Zc7Ptd'),
@@ -25,145 +42,7 @@ var shadeBaselayers = {
     "Land Temp": L.tileLayer('https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=513dd1747f3b4fd4eeb27d17169c8593')
 }
 
-L.control.layers(mapBaselayers, shadeBaselayers, {position: 'bottomleft'}).addTo(map);
-
-//Current location
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      latit = position.coords.latitude;
-      longit = position.coords.longitude;
-      var greenIcon = L.icon({
-        iconUrl: 'images/home_location.png',
-        iconSize:     [60, 60],
-        iconAnchor:   [30, 60],
-    })
-
-    L.marker([latit, longit], {icon: greenIcon}).bindTooltip("Home Sweet Home!").addTo(map);
-    map.panTo(new L.LatLng(latit, longit));
-    var offset = map.getSize().x*-0.20;
-    map.panBy(new L.Point(-offset, 0), {animate: false});
-   
-  })};
-
-function categoryMenu() {
-    var categories = document.getElementById("categoryMenu");
-    if (categories.style.display == "block") {
-        info.style.display = "none";
-        categories.style.display = "none";
-        weather.style.display = "none";
-        news.style.display = "none";
-        astronomy.style.display = "none";
-        covid.style.display = "none";
-    } else {
-        categories.style.display = "block";
-    }
-    }
-
-var info = document.getElementById("countryInfo");
-var weather = document.getElementById("countryWeather");  
-var news = document.getElementById("countryNews");
-var currency = document.getElementById("countryCurrency");
-var astronomy = document.getElementById("countryAstronomy"); 
-var covid = document.getElementById("countryCovid");
-var photo = document.getElementById("countryPhoto");
-
-function countryInfo() {
-    weather.style.display = "none";
-    news.style.display = "none";
-    currency.style.display = "none";
-    astronomy.style.display = "none"; 
-    covid.style.display = "none"; 
-    photo.style.display = "none";     
-    if (info.style.display == "block") {
-        info.style.display = "none";
-    } else {
-        info.style.display = "block";
-    }
-    }
-
-function countryWeather() {
-    info.style.display = "none";
-    news.style.display = "none";
-    currency.style.display = "none";
-    astronomy.style.display = "none"; 
-    covid.style.display = "none";
-    photo.style.display = "none";    
-    if (weather.style.display == "block") {
-        weather.style.display = "none";
-    } else {
-        weather.style.display = "block";
-    }
-    }
-
-function countryNews() {
-    info.style.display = "none";
-    weather.style.display = "none";
-    currency.style.display = "none";
-    astronomy.style.display = "none"; 
-    covid.style.display = "none"; 
-    photo.style.display = "none";  
-    if (news.style.display == "block") {
-        news.style.display = "none";
-    } else {
-        news.style.display = "block";
-    }
-    }
-
-function countryCurrency() {
-    info.style.display = "none";
-    weather.style.display = "none";
-    news.style.display = "none";
-    astronomy.style.display = "none"; 
-    covid.style.display = "none";  
-    photo.style.display = "none";   
-    if (currency.style.display == "block") {
-        currency.style.display = "none";
-    } else {
-        currency.style.display = "block";
-    }
-    }
-
-function countryAstronomy() {
-    info.style.display = "none";
-    weather.style.display = "none";
-    currency.style.display = "none"
-    news.style.display = "none";
-    covid.style.display = "none"; 
-    photo.style.display = "none";    
-    if (astronomy.style.display == "block") {
-        astronomy.style.display = "none";
-    } else {
-        astronomy.style.display = "block";
-    }
-    }
-
-function countryCovid() {
-    info.style.display = "none";
-    weather.style.display = "none";
-    currency.style.display = "none"
-    news.style.display = "none";
-    astronomy.style.display = "none";  
-    photo.style.display = "none";   
-    if (covid.style.display == "block") {
-        covid.style.display = "none";
-    } else {
-        covid.style.display = "block";
-    }
-    }
-
-function countryPhoto() {
-    info.style.display = "none";
-    weather.style.display = "none";
-    currency.style.display = "none"
-    news.style.display = "none";
-    astronomy.style.display = "none";
-    covid.style.display == "none";    
-    if (photo.style.display == "block") {
-        photo.style.display = "none"; 
-    } else {
-        photo.style.display = "block";
-    }
-    }
+L.control.layers(shadeBaselayers, null, {position: 'topright'}).addTo(map);
 
 //Dropdown country list
 $.getJSON('php/getCountryList.php', function(data) {
@@ -172,9 +51,12 @@ $.getJSON('php/getCountryList.php', function(data) {
         names = data['data'][i]['name'];
         value = data['data'][i]['code'];
         $('#countryList').append($('<option value='+ value +'>' + names + '</option>'));
-        }
+        }});
 
-        });
+$(map).on("click", function() {
+	$("#countryInfo").toggle();
+	$("#wondersIcon").toggle();
+	});
 
 //AJAX calls to PHP files
 $(document).change(function() {
@@ -190,10 +72,39 @@ $(document).change(function() {
                 for(var i = 0; i <result['data'].length; i++){
                     if(result['data'][i]['code'] == $listCountryCode){
                         $countryName = result['data'][i]['name'];
-                        $countryCode = result['data'][i]['code'];
+						$countryCode = result['data'][i]['code'];
+	
+	$.ajax({
+		url: "php/getLocationLatLng.php",
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			country: $countryCode,
+		},
+		success: function(result) {
 
+			if (result.status.name == "ok") {
+				$countryLat = result['data'][1][0]['latitude'];
+				$countryLng = result['data'][1][0]['longitude'];
+				var bounds = [[54.559322, -5.767822]];
 
-    
+				var locationMarker = L.icon({
+					iconUrl: 'images/location_marker.png',
+					iconSize:     [60, 60],
+					iconAnchor:   [30, 60],
+					popupAnchor: [2,-40],
+				});
+
+				var marker = L.marker([$countryLat, $countryLng], {icon: locationMarker}).addTo(map);
+				map.panTo(new L.LatLng($countryLat, $countryLng));
+				map.on('move', function (e) {
+                    if (marker) {
+					  map.removeLayer(marker);
+                    }
+					marker = L.marker([$countryLat, $countryLng], {icon: locationMarker}).addTo(map);   
+				})
+				
+
     $.ajax({
         url: "php/getCountryBorders.php",
         type: 'POST',
@@ -214,15 +125,22 @@ $(document).change(function() {
 
                 map.on('move', function (e) {
                     if (border) {
-                      map.removeLayer(border);
+					  map.removeLayer(border);
                     }
                     border = L.geoJSON($borders, {
                         "color": "#e1ad01",
                         "weight": 5,
                         "opacity": 0.65
                     }).addTo(map);
-                    
-                })
+
+				})
+
+				var countryBorderMarkers = new L.markerClusterGroup({ singleMarkerMode: true});
+
+				countryBorderLayer = countryBorderMarkers.addLayer(border);
+
+				var borders = L.featureGroup([countryBorderLayer]).addTo(map);
+				map.fitBounds(borders.getBounds())
 
         }},
         error: function(jqXHR, textStatus, errorThrown) {
@@ -242,19 +160,19 @@ $(document).change(function() {
                 $countryISO2 = result['data']['alpha2Code'];
                 $('#txtCountry').html($countryName  + ' <img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png" width="33" height="33"/>');
                 $('#txtnativeName').html(result['data']['nativeName']);
-                $('#txtCapital').html(result['data']['capital']);
-                $('#txtPopulation').html(result['data']['population']);
-                $('#txtlanguage').html(result['data']['languages'][0]['name']);
-                $('#txtContinent').html(result['data']['region']);
+                $capital = result['data']['capital'];
+                $population = result['data']['population'];
+                $language = result['data']['languages'][0]['name'];
+                $continent = result['data']['region'];
                 $('#txtSubRegion').html(result['data']['subregion']);
                 $('#txtAlpha2Code').html(result['data']['alpha2Code']);
                 $('#txtAlpha3Code').html(result['data']['alpha3Code']);
-                $('#txtTimeZones').html(result['data']['timezones']);
+                $timeZones = result['data']['timezones'];
                 $('#txtDialCode').html(result['data']['callingCodes']);
                 $('#txtCurrency').html('Currency '  + '<img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png" width="33" height="33"/>');
-                $('#txtCurNme').html(result['data']['currencies'][0]['name']);
-                $('#txtCurCode').html(result['data']['currencies'][0]['code']);
-                $('#txtCurSymbol').html(result['data']['currencies'][0]['symbol']);
+                $currencyName = result['data']['currencies'][0]['name'];
+                $currencyCode = result['data']['currencies'][0]['code'];
+                $currencySymbol = result['data']['currencies'][0]['symbol'];
     
                 
     $.ajax({
@@ -268,56 +186,15 @@ $(document).change(function() {
 
             if (result.status.name == "ok") {
                 $('#txtWeather').html('Weather ' + '<img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png" width="33" height="33"/>');
-                $('#txtTempC').html(result['data']['temp_c']);
+                $tempC = result['data']['temp_c'];
                 $('#txtTempF').html(result['data']['temp_f']);
-                $('#txtHumidity').html(result['data']['humidity']);
-                $('#txtCondition').html(result['data']['condition']['text']);
-                $('#txtWindMPH').html(result['data']['wind_mph']);
+                $humidity = result['data']['humidity'];
+                $condition = result['data']['condition']['text'];
+                $windMPH = result['data']['wind_mph'];
                 $('#txtWindKPH').html(result['data']['wind_kph']);
                 $('#txtFeelC').html(result['data']['feelslike_c']);
                 $('#txtFeelF').html(result['data']['feelslike_f']);
-
-        }},
-        error: function(jqXHR, textStatus, errorThrown) {
-        }});
     
-        $.ajax({
-        url: "php/getLocationLatLng.php",
-        type: 'POST',
-        dataType: 'json',
-        data: {
-            country: $countryCode,
-        },
-        success: function(result) {
-
-            if (result.status.name == "ok") {
-                $countryLat = result['data'][1][0]['latitude'];
-                $countryLng = result['data'][1][0]['longitude'];
-
-                var locationMarker = L.icon({
-                    iconUrl: 'images/location_marker.png',
-                    iconSize:     [60, 60],
-                    iconAnchor:   [30, 60],
-                    popupAnchor: [2,-40],
-                })
-
-                map.panTo(new L.LatLng($countryLat, $countryLng), {draggable:false});
-
-                var marker =  L.marker([$countryLat, $countryLng], {icon: locationMarker}).bindTooltip($countryName).addTo(map);
-
-                map.on('move', function (e) {
-                    if (marker) {
-                      map.removeLayer(marker);
-                    }
-                    marker = L.marker([$countryLat, $countryLng], {icon: locationMarker}).bindTooltip($countryName).addTo(map);
-                    
-                    }
-                );
-
-         }},
-        error: function(jqXHR, textStatus, errorThrown) {
-        }});
-
     $.ajax({
         url: "php/getAstronomyInfo.php",
         type: 'POST',
@@ -329,16 +206,11 @@ $(document).change(function() {
 
             if (result.status.name == "ok") {
                 $('#txtAstronomy').html('Astronomy ' + '<img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png" width="33" height="33"/>');
-                $('#txtLocalTime').html(result['data']['astro']['sunrise']);
-                $('#txtSunRise').html(result['data']['astro']['sunrise']);
-                $('#txtSunSet').html(result['data']['astro']['sunset']);
-                $('#txtMoonRise').html(result['data']['astro']['moonrise']);
-                $('#txtMoonSet').html(result['data']['astro']['moonset']);
-                $('#txtMoonPhase').html(result['data']['astro']['moon_phase']);
-
-        }},
-        error: function(jqXHR, textStatus, errorThrown) {
-        }});
+                $sunRise = result['data']['astro']['sunrise'];
+                $sunSet = result['data']['astro']['sunset'];
+                $moonRise = result['data']['astro']['moonrise'];
+                $moonSet = result['data']['astro']['moonset'];
+                $moonPhase = result['data']['astro']['moon_phase'];
 
         $.ajax({
             url: "php/getCovidByCountry.php",
@@ -350,14 +222,12 @@ $(document).change(function() {
             success: function(result) {
     
                 if (result.status.name == "ok") {
-                    $('#txtCovid').html('Daily Covid ' + '<img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png" width="33" height="33"/>');
-                    $('#txtConfirmed').html(result['data'][0]['Confirmed']);
-                    $('#txtDead').html(result['data'][0]['Deaths']);
-                    $('#txtRecovered').html(result['data'][0]['Recovered']);
-                    $('#txtActive').html(result['data'][0]['Active']);
-            }},
-            error: function(jqXHR, textStatus, errorThrown) {
-            }});
+                    $covidTodayCases = result['data']['todayCases'];
+                    $covidTodayDeaths = result['data']['todayDeaths'];
+                    $covidActive = result['data']['active'];
+                    $covidTotalCases = result['data']['cases'];
+                    $covidTotalDeaths = result['data']['deaths'];
+
 
         $.ajax({
             url: "php/getCovidWorldTotal.php",
@@ -369,12 +239,9 @@ $(document).change(function() {
             success: function(result) {
     
                 if (result.status.name == "ok") {
-                    $('#txtTConfirmed').html(result['data']['TotalConfirmed']);
-                    $('#txtTDead').html(result['data']['TotalDeaths']);
-                    $('#txtTRecovered').html(result['data']['TotalRecovered']);
-            }},
-            error: function(jqXHR, textStatus, errorThrown) {
-            }});
+                    $covidTotalConfirmed = result['data']['TotalConfirmed'];
+                    $covidTotalDead = result['data']['TotalDeaths'];
+                    $covidTotalRecovered = result['data']['TotalRecovered'];
 
         $.ajax({
             url: "php/getCountryNews.php",
@@ -387,21 +254,15 @@ $(document).change(function() {
                 $('#txtNews').html('No Headlines Avaliable');
                 if (result.status.name == "ok") {
                     if(result['data']['hits'][0] != undefined){
-                            $('#txtNews').html('Headlines ' + '<img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png" width="33" height="33"/>');
-                            $('#txtHeadline1').html(result['data']['hits'][0]['title']);
-                            $('#txtHeadline2').html(result['data']['hits'][1]['title']);
-                            $('#txtHeadline3').html(result['data']['hits'][2]['title']);
+                            $headline1 = result['data']['hits'][0]['title'];
+                            $headline2 = result['data']['hits'][1]['title'];
+                            $headline3 = result['data']['hits'][2]['title'];
                         } else {
-                            $('#txtNews').html('No Headlines Avaliable');
-                            $('#txtHeadline1').html('N/A');
-                            $('#txtHeadline2').html('');
-                            $('#txtHeadline3').html('');
+                            $headline1 = "N/A"
+                            $headline2 = "N/A"
+                            $headline3 = "N/A"
                        
                     }
-                 }},
-            error: function(jqXHR, textStatus, errorThrown) {
-            }});
-        
         $.ajax({
             url: "php/getCountryPhoto.php",
             type: 'POST',
@@ -412,24 +273,127 @@ $(document).change(function() {
             success: function(result) {
     
                 if (result.status.name == "ok") {
-                    $photo1 = result['data'][1]['webformatURL'];
-                    $photo2 = result['data'][2]['webformatURL'];
-                    $photo3 = result['data'][0]['webformatURL'];
-                    $('#txtPhotos').html('Photos'  + ' <img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png" width="33" height="33"/>');
-                    $('#txtPhoto1').html('<img id="photo1" src="' + $photo1 + '" height="150"/>');
-                    $('#txtPhoto2').html('<img id="photo2" src="' + $photo2 + '" height="150"/>');
-                    $('#txtPhoto3').html('<img id="photo3" src="' + $photo3 + '" height="150"/>');
-                 }},
-            error: function(jqXHR, textStatus, errorThrown) {
-            }});
-        
-        }},
-        error: function(jqXHR, textStatus, errorThrown) {
-        }});
-        
-}}}},  
-error: function(jqXHR, textStatus, errorThrown) {
-}     
+                    $photo1 = result['data'][0]['webformatURL'];
+                    $photo2 = result['data'][1]['webformatURL'];
+                    $photo3 = result['data'][2]['webformatURL'];
+                    $photo4 = result['data'][3]['webformatURL'];
+                    $photo5 = result['data'][4]['webformatURL'];
+                    $photo6 = result['data'][5]['webformatURL'];
+
+                    var countryInfo = '<h5>' + $countryName + ' <img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png"/></h5><p>Capital: '
+                    + $capital + '</p><p>Population: ' + $population + '</p><p>Continent: ' + $continent + '</p><p>Language: ' + $language + '</p><img class="photos" src="'
+                    + $photo1 + '"/>';
+
+                    var weatherInfo = '<h5>Weather <img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png"/></h5><p>Temp C: '
+                    + $tempC + '</p><p>Humidity: ' + $humidity + '</p><p>Wind Speed MPH: ' + $windMPH + '</p><p>Condition: ' + $condition + '</p><img class="photos" src="'
+                    + $photo2 + '"/>';
+
+                    var astronomyInfo = '<h5>Astronomy <img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png"/></h5><p>Sun Rise: '
+                    + $sunRise + '</p><p>Sunset: ' + $sunSet + '</p><p>Moonrise: ' + $moonRise + '</p><p>Moonset: ' + $moonSet + '</p><p>Moon Phase: ' + $moonPhase + '</p><img class="photos" src="'
+                    + $photo3 + '"/>';
+
+                    var currencyInfo = '<h5>Currency <img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png"/></h5><p>Currency Name: '
+                    + $currencyName + '</p><p>Currency Code: ' + $currencyCode + '</p><p>Currency Symbol: ' + $currencySymbol + '</p><img class="photos" src="'
+                    + $photo4 + '"/>';
+
+                    var newsInfo = '<h5>News <img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png"/></h5><p>Headline 1: '
+                    + $headline1 + '</p><p>Headline 2: ' + $headline2 + '</p><p>Headline 3: ' + $headline3 + '</p><img class="photos" src="'
+                    + $photo5 + '"/>';
+
+                    var covidInfo = '<h5>News <img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png"/></h5><p>Today Cases: '
+                    + $covidTodayCases + '</p><p>Today Deaths: ' + $covidTodayDeaths + '</p><p>Currently Active: ' + $covidActive + '</p><p>Total Cases: ' 
+                    + $covidTotalCases + '</p><p>Total Deaths: ' + $covidTotalDeaths + '</p><img class="photos" src="'
+					+ $photo6 + '"/>';
+					
+					function countryPopUp() {
+						var marker =  L.marker([$countryLat, $countryLng], {icon: locationMarker}).bindPopup(countryInfo).openPopup().addTo(map);
+                        marker.closePopup();
+                        marker.openPopup();
+                      };
+
+					$('#countryIcon').html('<img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png"/>')
+					
+					countryPopUp()
+
+					$('#countryIcon').click(function(){
+						var marker =  L.marker([$countryLat, $countryLng], {icon: locationMarker}).bindPopup(countryInfo).openPopup().addTo(map);
+                        marker.closePopup();
+						marker.openPopup();
+                      });
+
+                    $('#weatherIcon').click(function(){
+                        var marker =  L.marker([$countryLat, $countryLng], {icon: locationMarker}).bindPopup(weatherInfo).openPopup().addTo(map);
+                        marker.closePopup();
+						marker.openPopup();
+                      });
+
+                    $('#astronomyIcon').click(function(){
+                    var marker =  L.marker([$countryLat, $countryLng], {icon: locationMarker}).bindPopup(astronomyInfo).openPopup().addTo(map);      
+                        marker.closePopup();
+						marker.openPopup();
+                    });
+
+                    $('#currencyIcon').click(function(){
+                        var marker =  L.marker([$countryLat, $countryLng], {icon: locationMarker}).bindPopup(currencyInfo).openPopup().addTo(map);
+                        marker.closePopup();
+						marker.openPopup();
+                        });
+
+                    $('#newsIcon').click(function(){
+                        var marker =  L.marker([$countryLat, $countryLng], {icon: locationMarker}).bindPopup(newsInfo).openPopup().addTo(map);
+                        marker.closePopup();
+						marker.openPopup();
+                        });
+
+                    $('#covidIcon').click(function(){
+                        var marker =  L.marker([$countryLat, $countryLng], {icon: locationMarker}).bindPopup(covidInfo).openPopup().addTo(map);
+                        marker.closePopup();
+						marker.openPopup();
+						});
+					//Wonders of the world
+					$('#wondersIcon').click(function(){
+						marker.closePopup();
+						map.setView([0, 0], 2);
+					});
+                }},});
+                }},});
+                }},});
+                }},});
+                }},});
+                }},});
+                }},});
+                }},});
+}}}},       
 }); 
 });
 
+var clusterMarker = L.icon({
+    iconUrl: 'images/location_marker.png',
+    iconSize:     [60, 60],
+    iconAnchor:   [30, 60],
+    popupAnchor: [2,-40],
+});
+
+var markers = new L.markerClusterGroup({ singleMarkerMode: true, icon: clusterMarker});
+
+var mammoth_cave = L.marker([37.1815, -86.1505]).bindPopup('<img id="mammoth_cave" src="images/mammoth_cave.jpg" width="200" height="200"/>').bindTooltip('Mammoth Cave National Park.');
+var	niagara_falls    = L.marker([43.0962, -79.0377]).bindPopup('<img id="niagara_falls" src="images/niagara-falls.jpeg" width="200" height="200"/>').bindTooltip('Niagara Falls');
+
+
+var nAmericaWonders = [mammoth_cave, niagara_falls];
+
+var cities = L.layerGroup([mammoth_cave, niagara_falls]);
+
+nAmericaWondersMarkers = markers.addLayer(cities);
+
+var border = L.featureGroup([nAmericaWondersMarkers]).addTo(map);
+$(border).click(function(){ 
+    map.fitBounds(border.getBounds());
+});
+
+var caminoPoints = [
+    [42.4590, -5.8830],
+    [43.16222, 1.23722],
+  ];            
+  
+  var polyline = L.polyline(caminoPoints).addTo(map);  

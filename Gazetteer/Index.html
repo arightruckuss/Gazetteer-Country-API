@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gazetteer</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="bootstrap-4.5.3-dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="leaflet/leaflet.css"/>
+	<script src="leaflet/leaflet-src.js"></script>
+	<link rel='shortcut icon' type='image/x-icon' href='images/favicon.ico' />
+	<link rel="stylesheet" href="css/screen.css" />
+	<link rel="stylesheet" href="dist/MarkerCluster.css" />
+	<link rel="stylesheet" href="dist/MarkerCluster.Default.css" />
+	<script src="js/leaflet.markercluster-src.js"></script>
+</head>
+<body>
+	    <!--Map container-->
+		<div id="map" class="visible-scrollbar"></div>
+
+		<!--Nav Bar-->
+		<nav class="navbar navbar-dark bg-dark" id="navBar">
+			<h2 id="gazetteerTitle">Gazetteer</h2>
+	
+			<div class="input-group mb-3" id="countrySelect">
+			<select class="custom-select" id="countryList">
+			</select>
+			</div>
+		</nav>
+	
+		<div class="countryInfo" id="countryInfo">
+			<button type="button" class="btn btn-outline-secondary" id="countryIcon"><img src="images/worldIcon.png" height="50"/></button>
+			<button type="button" class="btn btn-outline-secondary"><img id="weatherIcon" src="images/weatherIcon.png" height="50"/></button>
+			<button type="button" class="btn btn-outline-secondary"><img id="astronomyIcon" src="images/astronomyIcon.png" height="50"/></button>
+			<button type="button" class="btn btn-outline-secondary"><img id="currencyIcon" src="images/currencyIcon.png" height="50"/></button>
+			<button type="button" class="btn btn-outline-secondary"><img id="newsIcon" src="images/newsIcon.png" height="50" width="50"/></button>
+			<button type="button" class="btn btn-outline-secondary"><img id="covidIcon" src="images/covidIcon.png" height="60"/></button>
+		</div>
+
+		<div class="wondersIcon" id="wondersIcon">
+			<button type="button" class="btn btn-outline-secondary"><img id="wondersIcon" src="images/worldIcon.png" height="50"/></button>
+		</div>
+
+
+	<script src="js/jquery.js"></script>  
+	<script src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
+    <script src="bootstrap-4.5.3-dist/js/bootstrap.bundle.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>
