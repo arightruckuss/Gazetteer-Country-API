@@ -6,14 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="bootstrap-4.5.3-dist/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="leaflet/leaflet.css"/>
-	<script src="leaflet/leaflet-src.js"></script>
 	<link rel='shortcut icon' type='image/x-icon' href='images/favicon.ico' />
 	<link rel="stylesheet" href="css/screen.css" />
-	<link rel="stylesheet" href="dist/MarkerCluster.css" />
-	<link rel="stylesheet" href="dist/MarkerCluster.Default.css" />
-	<script src="js/leaflet.markercluster-src.js"></script>
+	<link rel="stylesheet" href="leaflet/dist/MarkerCluster.css" />
+	<link rel="stylesheet" href="leaflet/dist/MarkerCluster.Default.css" />
 </head>
 <body>
+		  
 	    <!--Map container-->
 		<div id="map" class="visible-scrollbar"></div>
 
@@ -26,24 +25,27 @@
 			</select>
 			</div>
 		</nav>
-	
-		<div class="countryInfo" id="countryInfo">
-			<button type="button" class="btn btn-outline-secondary" id="countryIcon"><img src="images/worldIcon.png" height="50"/></button>
-			<button type="button" class="btn btn-outline-secondary"><img id="weatherIcon" src="images/weatherIcon.png" height="50"/></button>
-			<button type="button" class="btn btn-outline-secondary"><img id="astronomyIcon" src="images/astronomyIcon.png" height="50"/></button>
-			<button type="button" class="btn btn-outline-secondary"><img id="currencyIcon" src="images/currencyIcon.png" height="50"/></button>
-			<button type="button" class="btn btn-outline-secondary"><img id="newsIcon" src="images/newsIcon.png" height="50" width="50"/></button>
-			<button type="button" class="btn btn-outline-secondary"><img id="covidIcon" src="images/covidIcon.png" height="60"/></button>
+		
+		<!--Country info buttons-->
+		<div id="countryInfo">
+			<button type="button" class="btn btn-outline-secondary" id="countryIcon"><img src="images/worldIcon.png"/></button>
+			<button type="button" class="btn btn-outline-secondary"><img id="weatherIcon" src="images/weatherIcon.png"/></button>
+			<button type="button" class="btn btn-outline-secondary"><img id="astronomyIcon" src="images/astronomyIcon.png"/></button>
+			<button type="button" class="btn btn-outline-secondary"><img id="currencyIcon" src="images/currencyIcon.png"/></button>
+			<button type="button" class="btn btn-outline-secondary"><img id="newsIcon" src="images/newsIcon.png"/></button>
+			<button type="button" class="btn btn-outline-secondary"><img id="covidIcon" src="images/covidIcon.png"/></button>
 		</div>
 
-		<div class="wondersIcon" id="wondersIcon">
-			<button type="button" class="btn btn-outline-secondary"><img id="wondersIcon" src="images/worldIcon.png" height="50"/></button>
+		<!--Globol image-->
+		<div id="wondersInfo">
+			<button type="button" class="btn btn-outline-secondary" id="worldIcon"><img src="images/worldIcon.png"/></button>
 		</div>
 
-
+	<script src="leaflet/leaflet-src.js"></script>
 	<script src="js/jquery.js"></script>  
 	<script src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
-    <script src="bootstrap-4.5.3-dist/js/bootstrap.bundle.js"></script>
+	<script src="bootstrap-4.5.3-dist/js/bootstrap.bundle.js"></script>
+	<script src="js/leaflet.markercluster-src.js"></script>
 	<script src="js/script.js"></script>
 </body>
 </html>
