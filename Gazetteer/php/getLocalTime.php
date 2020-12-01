@@ -2,7 +2,7 @@
 
 	$executionStartTime = microtime(true) / 1000;
 
-	$url='http://api.datanews.io/v1/headlines?apiKey=069onv6a2w6tr6otcsz4ttujo&language=en&country=' . $_REQUEST['country'];
+	$url='https://api.ipgeolocation.io/timezone?apiKey=88d46fe471484b378f2fde0d7845bab7&lat=' . $_REQUEST['lat'] . '&long='. $_REQUEST['long'];
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -23,7 +23,6 @@
 	
 	header('Content-Type: application/json; charset=UTF-8');
 	header("Access-Control-Allow-Origin: *");
-    echo json_encode($output); 
-    
+	echo json_encode($output); 
 
 ?>

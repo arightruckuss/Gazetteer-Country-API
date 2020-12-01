@@ -2,7 +2,7 @@
 
 	$executionStartTime = microtime(true) / 1000;
 
-	$url='http://api.datanews.io/v1/headlines?apiKey=069onv6a2w6tr6otcsz4ttujo&language=en&country=' . $_REQUEST['country'];
+	$url='https://api.opencagedata.com/geocode/v1/json?q=' . $_REQUEST['latitude'] .',' . $_REQUEST['longitude'] . '&key=657bb4a61a7f47af84f3ace052fa11a0';
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -22,8 +22,7 @@
 	$output['data'] = $decode;
 	
 	header('Content-Type: application/json; charset=UTF-8');
-	header("Access-Control-Allow-Origin: *");
-    echo json_encode($output); 
-    
+
+	echo json_encode($output); 
 
 ?>

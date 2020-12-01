@@ -1,23 +1,48 @@
-/*HTML*/
+#map {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    bottom: 0px;
+    right: 0px;
+    z-index: -1;
+    overflow: hidden;
+    display: flex;
+    margin: 0px;
+}
 
 #navBar {
     width: 100%;
-    height: 75px;
-}
-
-.navbar {
-    background-color: #9ab3f5!important;
-    border: 4px solid #8278c7;
+    height: 70px;
+    background-color: #fffff5!important;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    overflow: hidden!important;
+    display: flex!important;
+    margin: 0px!important;
+    display: none;
 }
 
 #gazetteerTitle {
     color: #150485;
-    opacity: 0.8;
-    font-weight: bold;
-    font-family: 'Proza Libre', sans-serif;
+    font-family: 'Gentium Basic', serif;
     margin-left: -10px;
     letter-spacing: .1em;
-    font-size: 4vw;
+    font-size: 1.8em;
+}
+
+#weatherIcon {
+    position: absolute;
+    width: 30px; 
+    left: 100px;   
+}
+
+#weatherInfo {
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+#weatherText {
+    position: relative;
+    left: 130px;
+    top: 7px;
 }
 
 #countrySelect {
@@ -26,123 +51,533 @@
     margin-right: -20px;
     top: 4px;
     right: 5px;
-}
-
-
-/*Map*/
-#map {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: -2px;
-    right: -2px;
-    z-index: -1;
-}
-
-.invisible-scrollbar ::-webkit-scrollbar {
-    display: none;
-  }
-
-.countryInfoBox {
-    position: absolute;
-    top: 115px;
-    left: 125px;
-    background-color: #d0d7eb;
-    border-radius: 15px;
-    border: 5px solid #8278c7;
-    padding: 4px;
-    font-family: 'Roboto', sans-serif;
-    opacity: 0.9;
-    max-width: 67%;
-}
-
-hr { 
-    position: relative; 
-    top: -15px; 
-    height: 5px; 
-    margin-bottom: -10px; 
-} 
-
-
-span {
-    font-weight: bold;
-    font-style: normal;
-    color: green;
-    max-width: 100%;
-    word-wrap: break-word;
-    font-size: 1.5vw;
-}
-
-#categoryOptions{
-    max-width: 123px;
-    border: 2px solid #8278c7;
-    border-radius: 5px;
-}
-
-.menuTitle {
-    text-align: center;
-    font-family: 'Proza Libre', sans-serif;
-    color: #150485;
-}
-
-button {
-    padding: 9px;
-}
-
-.list-group-item-action {
-    max-width: 125px!important;
-    font-family: 'Roboto', sans-serif;
-    color: #150485;
-}
-
-#categoryMenu {
-    display: none;
+    visibility: visiable;
 }
 
 #countryInfo {
-    display: none;
+    display: block;
+    margin-left: 10px;
+    position: absolute;
+    top: 20%;
+    opacity: 0.8;
+    border-radius: 10px;
+    top: 15%;
 }
 
-#countryWeather {
-    display: none;
+#countryInfo button {
+    display: block;
 }
 
-#countryCurrency {
-    display: none;
+#worldButton {
+    right: 0px;
+    margin-right: 10px;
+    position: absolute;
+    bottom: 20px;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
 
-#countryNews {
-    display: none;
-}
-
-#countryAstronomy {
-    display: none;
-}
-
-#countryCovid {
-    display: none;
-}
-
-#countryPhoto {
-    display: none;
-}
-
-hr { 
-    height: 1px; 
-    background: #150485;
-} 
-
-#dotted {
-    border-top: 1px dashed #150485;
-}
-
-#flag {
+#worldIcon {
+    width: 29px;
     position: relative;
-    bottom: 3px;
+    right: 6px;
+    bottom: 3%;
 }
 
-.leaflet-control-layers-toggle {
-    background-image: url('home_location.png');
+#photoButton {
+    margin-left: 47%;
+    position: absolute;
+    bottom: 3%;
+    background: white;
+    opacity: 0.9;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+#photoButton2 {
+    right: 50%;
+    margin-right: 10px;
+    position: absolute;
+    bottom: 3%;
+    background: white;
+    opacity: 0.9;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+#photoIcon {
     width: 36px;
-    height: 36px;
+    position: absolute;
+    right: 5px;
+    bottom: 10%;
+    display: block;
+}
+
+#photoIcon2 {
+    width: 36px;
+    position: absolute;
+    right: 5px;
+    bottom: 10%;
+    display: none;
+}
+
+#box
+{
+    width: 40px;
+    position: absolute;
+    margin-right: 12px;
+    z-index: 10;
+    display: none;
+    height: 45px;
+    bottom: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    right: 50%;
+    opacity: 0.8;
+    border-radius: 10px;
+}
+#photoScreen
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #000;
+}
+
+#newsScreen
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #000;
+}
+
+#covidScreen
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #000;
+}
+
+.photos {
+    width: 180px; 
+    height: 130px;
+}
+
+#loading-image {
+    position: absolute;
+    top: 80px;
+    left: 10px;
+    width: 60px; 
+    height: 45px;
+    border-radius: 90px;
+}
+
+/* Slideshow container */
+#pics {
+    max-width:100%!important;
+    height:auto;
+    max-height:100%!important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+#carouselExampleControls {
+    background-color: gray;
+    top: 120px;
+    width: 100%;
+    height: 250px;
+    display: none;
+}
+
+.carousel-control-next {
+    max-width: 100%;
+}
+
+.numbertext {
+  color: #f2f2f2bb;
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+}
+
+/*newspaper*/
+#newsButton {
+    margin-left: 10px;
+    position: absolute;
+    height: 43px;
+    top: 78px;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+#covidButton {
+    margin-left: 10px;
+    position: absolute;
+    bottom: 2%;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    height: 43px;
+}
+
+#newsIcon {
+    width: 35px;
+    position: relative;
+    height: 24px;
+    right: 9px;
+    bottom: 1px;
+    display: block;
+}
+
+#newsIcon2 {
+    width: 35px;
+    position: relative;
+    height: 24px;
+    right: -4px;
+    top: -35px;
+    display: none;
+}
+
+#covidIcon {
+    width: 36px;
+    position: relative;
+    right: 9px;
+    bottom: 4px;
+    display: block;
+}
+
+#covidIcon2 {
+    width: 36px;
+    position: relative;
+    right: -4px;
+    bottom: 41px;
+    display: none;
+}
+
+#newsHeader{
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 20px;
+    text-transform: uppercase;
+    display: inline-block;
+    line-height: 18px;
+}
+
+#covidHeader{
+    font-family: Verdana;
+    font-weight: 900;
+    font-size: 12px;
+    text-transform: uppercase;
+    display: inline-block;
+    position: relative;
+    margin-left: 9px;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 7px;
+}
+
+.newsHead{
+    text-align: center;
+    position: relative;
+    top: 5px;
+}
+
+.covidHead{
+    text-align: center;
+    position: relative;
+}
+
+.subhead{
+    text-transform: uppercase;
+    border-bottom: 2px solid #2f2f2f;
+    border-top: 2px solid #2f2f2f;
+    font-family: 'Droid Serif', serif;
+    font-size: 14px;
+    color: #2f2f2f;
+
+}
+
+.content{
+    font-size: 0;
+    line-height: 1;
+    word-spacing: -.31em;
+    display: inline-block;
+    width: 100%;
+}
+
+#covidCollumn{
+    font-size: 15px;
+    margin: -12px auto;
+    line-height: 11px;
+    display: inline-block;
+    vertical-align: top;
+    transition: all .7s;
+    width: 18em;
+    padding: 8px;
+    height: 125px;
+}
+
+#newsCollumn{
+    font-size: 15px;
+    margin: -12px auto;
+    line-height: 11px;
+    display: inline-block;
+    vertical-align: top;
+    transition: all .7s;
+    width: 55em;
+    padding: 8px;
+}
+
+.collumn .headline.hl3{
+    font-weight: 400;
+    font-style: italic;
+    font-size: 23px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+    font-family: 'Droid Serif', serif;
+    color: #2f2f2f;
+}
+.collumn .headline.hl4{
+    font-weight: 700;
+    font-size: 11px;
+    box-sizing: border-box;
+    font-family: 'Droid Serif', serif;
+    color: #2f2f2f;
+}
+
+.collumn .headline.hl4:before{
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 7px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .headline.hl4:after{
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 10px;
+    display: block;
+    margin: 0 auto;
+
+}
+
+#mainArticle {
+    font-family: 'Droid Serif', serif;
+    font-size: 14px;
+    color: #2f2f2f;
+}
+
+.media {
+    -webkit-filter: sepia(80%) contrast(1) opacity(0.8);
+    filter: sepia(80%) grayscale(1) contrast(1) opacity(0.8);
+    mix-blend-mode: multiply;
+    width: 100%;
+}
+/*________________________________________________________________________________________________________________________________*/
+/*MEDIAQUERIES*/
+@media only all and (max-width: 1300px) {
+    .weatherforcastbox{
+        display: none;
+    }
+
+}
+@media only all and (max-width: 1200px) {
+    .collumn{
+        width: 100%;
+    }
+
+}
+    @media only all and (max-width: 900px) {
+    .collumn{
+        width: 100%;
+    }
+
+}
+@media only all and (max-width: 600px) {
+    .collumn{
+        width: 100%;
+    }
+	.collumn + .collumn {
+				border-left: none;
+      	border-bottom: 1px solid #2f2f2f;
+	}
+    header{
+        max-width: 320px;
+        font-size: 30px;
+        line-height: 26px;
+        overflow: hidden;
+    }
+
+}
+
+#newsPaper {
+    position: absolute;
+    top: 23%;
+    left: 19%;
+    right: 16%;
+    padding: 5px;
+    background: #F2EEE0;
+    height: 430px;
+    width: 61%;
+    display: none;
+    box-shadow: 3px 3px 4px 0 rgba(169, 169, 169);
+    border-radius: 5px;
+}
+
+#localTime {
+    font-size: 11px;
+    margin-bottom: 22px;
+    margin-top: -2px;
+    height: 19px;
+}
+
+div.contentOne {
+    background-color:white;
+    width: 100%;
+    height: 60px;
+    overflow: scroll;
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Droid Serif', serif;
+    font-size: 12px;
+    color: #2f2f2f;
+    text-align: center;
+  }
+
+div.covidBox {
+    background-color:white;
+    width: 100%;
+    height: 65px;
+    overflow: scroll;
+    padding: 10px;
+    font-family: 'Droid Serif', serif;
+    font-size: 14px;
+    color: #2f2f2f;
+    text-align: center;
+    display: inline;
+  } 
+
+#covidCountryTotal, #covidWorldTotal {
+    border-left: 2px solid black;
+    height: 500px;
+}
+
+  div.contentTwo {
+    background-color:white;
+    width: 100%;
+    height: 60px;
+    overflow: scroll;
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Droid Serif', serif;
+    font-size: 12px;
+    color: #2f2f2f;
+    text-align: center;
+  }
+
+  div.contentThree {
+    background-color:white;
+    width: 100%;
+    height: 60px;
+    overflow: scroll;
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Droid Serif', serif;
+    font-size: 12px;
+    color: #2f2f2f;
+    text-align: center;
+  }
+
+#headlineOne {
+    font-size: 12px;
+    position: relative;
+    top: -15px;
+    text-align: center;
+}
+
+.urlText {
+  font-size: 8px;  
+}
+
+#url1, #url2, #url3 {
+    text-align: center;
+    overflow: overlay;
+    max-width: 100%;
+    margin-bottom: 17px;
+    margin-top: 2px;
+}
+
+hr {
+    border: 1px solid black;
+    margin-top: 0rem;
+}
+
+#covidPaper {
+    position: absolute;
+    top: 30%;
+    left: 17%;
+    right: 20%;
+    background: white;
+    display: block;
+    width: 282px;
+    height: 180px;
+    display: none;
+    box-shadow: 3px 3px 4px 0 rgba(169, 169, 169);
+    border-radius: 5px;
+}
+
+th {
+    font-family: Verdana;
+    font-size: 10px;
+}
+
+td {
+    font-size: 12px;
+    font-family: ookman, "URW Bookman L", serif;
+}
+
+#covidContent {
+    margin-top: -30px;
+    position: relative;
+}
+
+#covidNewDeaths, #deathsCountryTotal, #deathsWorldTotal {
+    font-size: 22px;
+    color: #6E0A1E;
+    font-weight: bold;
+    margin-left: 1px;
+    line-height: 2;
+}
+
+#covidNewCases, #casesCountryTotal, #casesWorldTotal {
+    font-size: 22px;
+    color: deepskyblue;
+    font-weight: bold;
+    margin-left: 1px;
+    line-height: 2;
+}
+
+.borderLeft {
+    border-left: 1px solid black;
+    color: green;
+}
+.greenText {
+    color: green;
+}
+
+#headerobjectswrapper {
+    height: 27px;
 }

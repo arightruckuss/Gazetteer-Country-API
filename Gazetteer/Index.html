@@ -7,12 +7,11 @@
     <link rel="stylesheet" type="text/css" href="bootstrap-4.5.3-dist/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="leaflet/leaflet.css"/>
 	<link rel='shortcut icon' type='image/x-icon' href='images/favicon.ico' />
-	<link rel="stylesheet" href="css/screen.css" />
+	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="leaflet/dist/MarkerCluster.css" />
 	<link rel="stylesheet" href="leaflet/dist/MarkerCluster.Default.css" />
 </head>
 <body>
-		  
 	    <!--Map container-->
 		<div id="map" class="visible-scrollbar"></div>
 
@@ -25,21 +24,123 @@
 			</select>
 			</div>
 		</nav>
-		
-		<!--Country info buttons-->
-		<div id="countryInfo">
-			<button type="button" class="btn btn-outline-secondary" id="countryIcon"><img src="images/worldIcon.png"/></button>
-			<button type="button" class="btn btn-outline-secondary"><img id="weatherIcon" src="images/weatherIcon.png"/></button>
-			<button type="button" class="btn btn-outline-secondary"><img id="astronomyIcon" src="images/astronomyIcon.png"/></button>
-			<button type="button" class="btn btn-outline-secondary"><img id="currencyIcon" src="images/currencyIcon.png"/></button>
-			<button type="button" class="btn btn-outline-secondary"><img id="newsIcon" src="images/newsIcon.png"/></button>
-			<button type="button" class="btn btn-outline-secondary"><img id="covidIcon" src="images/covidIcon.png"/></button>
-		</div>
+
+		<div id="weatherInfo"></div>
+
+		<div id="newsScreen"></div>
+		<div id="photoScreen"></div>
+		<div id="covidScreen"></div>
 
 		<!--Globol image-->
-		<div id="wondersInfo">
-			<button type="button" class="btn btn-outline-secondary" id="worldIcon"><img src="images/worldIcon.png"/></button>
+		<div id="worldButton">
+			<button type="button" class="btn btn-outline-secondary"><img id="worldIcon" src="images/worldIcon.png"/></button>
 		</div>
+		<!--Newspaper-->
+		<div id="newsButton">
+			<button type="button" class="btn btn-outline-secondary" ><img id="newsIcon" src="images/newsIcon.png"/></button>
+			<img id="newsIcon2" src="images/newsIcon.png"/>
+		</div>
+
+
+		<div id="covidButton">
+			<button type="button" class="btn btn-outline-secondary" ><img id="covidIcon" src="images/covidIcon.png"/></button>
+			<img id="covidIcon2" src="images/covidIcon.png"/>
+		</div>
+
+		<div id="newsPaper">
+				<div class="newsHead">
+					<div class="headerobjectswrapper">
+						<header id="newsHeader">Daily Country</header>
+					</div>
+				
+					<div class="subhead" id="localTime">Todays date</div>
+				</div>
+			<div id="newsContent">
+				<div class="content">
+					<div class="collumns">
+						<div class="collumn" id="newsCollum">
+							<div class="contentOne">News content</div><div class="collumn"></div>
+							<div id="url1"></div>
+							<br>
+							<div class="contentTwo">News content</div><div class="collumn"></div>
+							<div id="url2"></div>
+							<br>
+							<div class="contentThree">News content</div><div class="collumn"></div>
+							<div id="url3"></div>
+
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+		<div id="covidPaper">
+			<div class="covidhead">
+				<div class="headerobjectswrapper" id="headerobjectswrapper">
+					<header id="covidHeader">Coronavirus</header>
+				</div>
+			<hr>
+			</div>
+		<div id="covidContent">
+			<div class="content">
+				<div class="collumns">
+					<div class="collumn" id="covidCollumn">
+						<table class="table table-bordered">
+							<thead>
+							  <tr>
+								<th scope="col">New</th>
+								<th scope="col">Total</th>
+								<th scope="col">World</th>
+							  </tr>
+							</thead>
+							<tbody>
+							  <tr>
+								<td class="greenText">Cases <div id="covidNewCases">  1234567</div></td>
+								<td class="borderLeft">Cases  <div id="casesCountryTotal"> 1234567</div></td>
+								<td class="borderLeft">Cases  <div id="casesWorldTotal"> 1234567</div></td>
+							  </tr>
+							  <tr>
+								<td class="greenText">Deaths <div id="covidNewDeaths"> 1234567</div></td>
+								<td class="borderLeft">Deaths  <div id="deathsCountryTotal"> 1234567</div></td>
+								<td class="borderLeft">Deaths <div id="deathsWorldTotal"> 1234567</div></td>
+							  </tr>
+							</tbody>
+						  </table>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+	
+		<!--Photo button-->
+		<div id="photoButton">
+			<button type="button" class="btn btn-outline-secondary"><img id="photoIcon" src="images/camera_icon.png"/></button>
+			<img id="photoIcon2" src="images/camera_icon.png"/>
+		</div>
+
+		<!--Photo slide-->
+		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+			<div class="carousel-inner" id="pics">
+			  <div class="carousel-item active" id="pic1"></div>
+			  <div class="carousel-item" id="pic2"></div>
+			  <div class="carousel-item" id="pic3"></div>
+			  <div class="carousel-item" id="pic4"></div>
+			  <div class="carousel-item" id="pic5"></div>
+			  <div class="carousel-item" id="pic6"></div>
+			  <div class="carousel-item" id="pic7"></div>
+			  <div class="carousel-item" id="pic8"></div>
+			  <div class="carousel-item" id="pic9"></div>
+			  <div class="carousel-item" id="pic10"></div>
+			<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+			  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			  <span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+			  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			  <span class="sr-only">Next</span>
+			</a>
+		  </div>
+		  </div>
+
 
 	<script src="leaflet/leaflet-src.js"></script>
 	<script src="js/jquery.js"></script>  
