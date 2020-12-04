@@ -6056,7 +6056,6 @@ a.close.disabled {
   border-bottom: 1px solid #dee2e6;
   border-top-left-radius: calc(0.3rem - 1px);
   border-top-right-radius: calc(0.3rem - 1px);
-  margin-left: 72px;
 }
 
 .modal-header .close {

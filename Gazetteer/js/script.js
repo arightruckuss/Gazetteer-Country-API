@@ -46,7 +46,7 @@ if (navigator.geolocation) {
     
 //Wonders of the world
 $('#worldIcon').click(function(){
-    map.setView([latit, longit], 2);
+    map.setView([latit, longit], 10);
     
 });
 
@@ -74,9 +74,9 @@ for(var i = 0; i < data['data'].length; i++) {
     $('#countryList').append($('<option value='+ code +'>' + names + '</option>'));      
     }
 }); 
-
+$('#countryList').append($('<option value='+ $usersCountryCode +'>' + $usersCountry + '</option>')); 
 $("#countryList").change(function() {
-    $('#countryList').append($('<option value='+ $usersCountryCode +'>' + $usersCountry + '</option>'));  
+     
         $("#countryList").ready(function(){ 
         $listCountryCode = $("#countryList").val();
         $listCountryTxt = $("#countryList").text(); 
@@ -253,7 +253,8 @@ $("#countryList").change(function() {
             success: function(result) {
     
                 if (result.status.name == "ok") {
-                    if(result['data'][0] == undefined || result['data'][0] == null){
+                     console.log(result['data']);
+                    if(result['data'] == undefined || result['data'] == null){
                             $covidTodayCases = "N/A";
                             $covidTodayDeaths = "N/A";
                             $covidTotalCases = "N/A";
@@ -263,15 +264,6 @@ $("#countryList").change(function() {
                         $covidTodayDeaths = result['data']['todayDeaths'];
                         $covidTotalCases = result['data']['cases'];
                         $covidTotalDeaths = result['data']['deaths'];
-
-                        function formatNumber(num) {
-                            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-                        }
-                        
-                        $covidTodayCases = formatNumber($covidTodayCases)
-                        $covidTodayDeaths = formatNumber($covidTodayDeaths)  
-                        $covidTotalCases = formatNumber($covidTotalCases)
-                        $covidTotalDeaths = formatNumber($covidTotalDeaths)
                     }
 
         $.ajax({
@@ -284,9 +276,7 @@ $("#countryList").change(function() {
             success: function(result) {
     
                 if (result.status.name == "ok") {
-                    if(result == undefined){
-                        $covidWorldDead = "N/A";
-                        $covidWorldConfirmed = "N/A";
+                    if(result['data'] == undefined || result['data'] == null){
                         $covidWorldDead = "N/A";
                         $covidWorldConfirmed = "N/A";
                     } else {
@@ -311,7 +301,17 @@ $("#countryList").change(function() {
             success: function(result) {
                 $('#txtNews').html('No Headlines Avaliable');
                 if (result.status.name == "ok") {
-                    if(result['data']['data'][0] != undefined){
+                    if(result['data']['data'][0] == undefined) {
+                        $headline1 = "N/A";
+                        $headline2 = "N/A";
+                        $headline3 = "N/A";
+                        $source1 = "N/A";
+                        $source2 = "N/A";
+                        $source3 = "N/A";
+                        $url1 = "N/A";
+                        $url2 = "N/A";
+                        $url3 = "N/A";
+                    } else {
                         $headline1 = result['data']['data'][0]['title'];
                         $description1 = result['data']['data'][0]['description'];
                         $url1 = result['data']['data'][0]['url'];
@@ -323,16 +323,6 @@ $("#countryList").change(function() {
                         $headline3 = result['data']['data'][2]['title'];
                         $description3 = result['data']['data'][2]['description'];
                         $url3 = result['data']['data'][2]['url'];
-                    } else {
-                        $headline1 = "N/A";
-                        $headline2 = "N/A";
-                        $headline3 = "N/A";
-                        $source1 = " ";
-                        $source2 = " ";
-                        $source3 = " ";
-                        $url1 = " ";
-                        $url2 = " ";
-                        $url3 = " ";
                 }
 
 
@@ -346,25 +336,22 @@ $("#countryList").change(function() {
             success: function(result) {
     
                 if (result.status.name == "ok") {
-                    if(result['data'][0] == null || result['data'][0] == undefined) {
+                    if(result['data'] == null || result['data'] == undefined) {
                         $photo1 = 'images/na.png';
                         $photo2 = 'images/na.png';
                         $photo3 = 'images/na.png';
                         $photo4 = 'images/na.png';
-                        $photo5 = 'images/na.png';
                     } else {
                         $photo1 = result['data'][0]['webformatURL'];
                         $photo2 = result['data'][1]['webformatURL'];
                         $photo3 = result['data'][2]['webformatURL'];
                         $photo4 = result['data'][3]['webformatURL'];
-                        $photo5 = result['data'][4]['webformatURL'];
                     }
 
-                    $('#pic1').html('<img class="d-block w-100" src="' + $photo1 + '" alt="First slide"><div class="numbertext">1 / 5</div>');
-                    $('#pic2').html('<img class="d-block w-100" src="' + $photo2 + '" alt="Secound slide"><div class="numbertext">2 / 5</div>');
-                    $('#pic3').html('<img class="d-block w-100" src="' + $photo3 + '" alt="Third slide"><div class="numbertext">3 / 5</div>');
-                    $('#pic4').html('<img class="d-block w-100" src="' + $photo4 + '" alt="Fourth slide"><div class="numbertext">4 / 5</div>');
-                    $('#pic5').html('<img class="d-block w-100" src="' + $photo5 + '" alt="Fifth slide"><div class="numbertext">5 / 5</div>');
+                    $('#pic1').html('<img class="d-block w-100" src="' + $photo1 + '" alt="First slide"><div class="numbertext">1 / 4</div>');
+                    $('#pic2').html('<img class="d-block w-100" src="' + $photo2 + '" alt="Secound slide"><div class="numbertext">2 / 4</div>');
+                    $('#pic3').html('<img class="d-block w-100" src="' + $photo3 + '" alt="Third slide"><div class="numbertext">3 / 4</div>');
+                    $('#pic4').html('<img class="d-block w-100" src="' + $photo4 + '" alt="Fourth slide"><div class="numbertext">4 / 4</div>');
 
 
                     var countryInfo = '<img id="flag" src="https://www.countryflags.io/' + $countryISO2 + '/flat/64.png"/><p>Capital: '
@@ -379,15 +366,15 @@ $("#countryList").change(function() {
                     //Newspaper content
                     $('#newsHeadline1').html($headline1);
                     $('#newsContent1').html($description1);
-                    $('#url1').html('<a href="' + $url1 + '">' + $url1 + '</a>');
+                    $('#url1').html('<a href="' + $url1 + '" target="_blank">' + $url1 + '</a>');
 
                     $('#newsHeadline2').html($headline2);
                     $('#newsContent2').html($description2);
-                    $('#url2').html('<a href="' + $url2 + '">' + $url2 + '</a>');
+                    $('#url2').html('<a href="' + $url2 + '" target="_blank">' + $url2 + '</a>');
 
                     $('#newsHeadline3').html($headline3);
                     $('#newsContent3').html($description3);
-                    $('#url3').html('<a href="' + $url3 + '">' + $url3 + '</a>');
+                    $('#url3').html('<a href="' + $url3 + '" target="_blank">' + $url3 + '</a>');
                          
                     
                     //Covid content
