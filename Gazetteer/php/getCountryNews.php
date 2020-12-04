@@ -2,7 +2,7 @@
 
 	$executionStartTime = microtime(true) / 1000;
 
-	$url='http://api.datanews.io/v1/headlines?apiKey=069onv6a2w6tr6otcsz4ttujo&language=en&country=' . $_REQUEST['country'];
+	$url='http://api.mediastack.com/v1/news?access_key=2b17138d54ddabba4af12eaa85cfb29d&languages=en&countries=' . $_REQUEST['country'];
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);

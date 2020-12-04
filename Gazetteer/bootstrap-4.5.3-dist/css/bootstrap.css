@@ -380,7 +380,7 @@ h4, .h4 {
 }
 
 h5, .h5 {
-  font-size: 1.25rem;
+  font-size: .6rem;
 }
 
 h6, .h6 {
@@ -484,7 +484,10 @@ mark,
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
   max-width: 100%;
-  height: auto;
+  height: 80px;
+  width: 80px;
+  position: absolute;
+  left: 0;
 }
 
 .figure {
@@ -2538,27 +2541,28 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: white;
+  border-color: black;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #0069d9;
-  border-color: #0062cc;
+  background-color: lightgray;
+  border-color: black;
 }
 
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
-  background-color: #0069d9;
-  border-color: #0062cc;
-  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+  background-color: white;
+  border-color: black;
+  box-shadow: 0 0 0 0.2rem lightgray
+  ;
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: white;
+  border-color: black;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
@@ -6011,13 +6015,16 @@ a.close.disabled {
   display: flex;
   -ms-flex-direction: column;
   flex-direction: column;
-  width: 100%;
+  width:77vw;
   pointer-events: auto;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;
   outline: 0;
+  overflow: scroll;
+  height: 20vh;
+  top: 117px;
 }
 
 .modal-backdrop {
@@ -6049,6 +6056,7 @@ a.close.disabled {
   border-bottom: 1px solid #dee2e6;
   border-top-left-radius: calc(0.3rem - 1px);
   border-top-right-radius: calc(0.3rem - 1px);
+  margin-left: 72px;
 }
 
 .modal-header .close {
@@ -6057,16 +6065,21 @@ a.close.disabled {
 }
 
 .modal-title {
-  margin-bottom: 0;
-  line-height: 1.5;
+  margin-bottom: -12px;
+  line-height: 1;
+  font-size: 10px;
+  font-weight: bold;
 }
 
 .modal-body {
   position: relative;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  padding: 1rem;
+  padding: 0px 0px 0px 0px;
+  margin: 1px 0px;
+  font-family: 'Roboto Slab', serif;
 }
+
 
 .modal-footer {
   display: -ms-flexbox;
@@ -6418,6 +6431,7 @@ a.close.disabled {
   position: relative;
   width: 100%;
   overflow: hidden;
+  top: -7px;
 }
 
 .carousel-inner::after {
@@ -6509,6 +6523,7 @@ a.close.disabled {
   text-align: center;
   opacity: 0.5;
   transition: opacity 0.15s ease;
+  height: 160px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -6554,7 +6569,6 @@ a.close.disabled {
 .carousel-indicators {
   position: absolute;
   right: 0;
-  bottom: 0;
   left: 0;
   z-index: 15;
   display: -ms-flexbox;
@@ -7972,6 +7986,8 @@ button.bg-dark:focus {
 
 .overflow-auto {
   overflow: auto !important;
+  margin-left: 85px;
+  font-size: 8px;
 }
 
 .overflow-hidden {

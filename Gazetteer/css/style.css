@@ -1,27 +1,449 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
-header{
-    font-family: 'Playfair Display', serif;
-    font-weight: 900;
-    font-size: 80px;
-    text-transform: uppercase;
-    display: inline-block;
-    line-height: 72px;
+body {
+    overflow-x: hidden;
 }
+#map {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    bottom: 0px;
+    right: 0px;
+    z-index: -1;
+    overflow: hidden;
+    display: flex;
+    margin: 0px;
+    overflow-x: hidden;
+}
+
+#navBar {
+    width: 100%;
+    height: 70px;
+    background-color: #fffff5!important;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    overflow: hidden!important;
+    display: flex!important;
+    margin: 0px!important;
+    display: none;
+}
+
+#gazetteerTitle {
+    color: #150485;
+    font-family: 'Gentium Basic', serif;
+    margin-left: -10px;
+    letter-spacing: .1em;
+    font-size: 1.8em;
+}
+
+#countrySelect {
+    float: right;
+    width: 50%;
+    margin-right: -20px;
+    top: 4px;
+    right: 5px;
+    visibility: visiable;
+}
+
+#countryInfo {
+    display: block;
+    margin-left: 10px;
+    position: absolute;
+    top: 20%;
+    opacity: 0.8;
+    border-radius: 10px;
+    top: 15%;
+}
+
+#countryInfo button {
+    display: block;
+}
+
+#loading-image {
+    position: absolute;
+    top: 80px;
+    left: 10px;
+    width: 60px; 
+    height: 45px;
+    border-radius: 90px;
+}
+
+#weatherBox {
+    position: absolute;
+    box-sizing: content-box;
+    top: 80px;
+    right: 10px;
+    width: 41px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black; 
+    height: 140px; 
+}
+
+.weatherIcon {
+    position: relative;
+    width: 21px;
+    font-size: 24px;
+    left: 8px;
+    top: -1px;
+}
+
+#windIcon {
+    top: 8px;
+}
+
+#weatherInfo {
+    font-family: 'Merriweather', serif;
+    position: relative;
+    width: 36px;
+    left: 2px;
+    top: -30px;
+}
+
+#weatherText {
+    position: relative;
+    top: 26px;
+    font-size: 50%;
+    line-height: 1;
+    text-align: center;
+}
+
+#weatherWind {
+    font-family: 'Merriweather', serif;
+    position: absolute;
+    left: 6px;
+    top: 114px;
+    line-height: 12px;
+    font-size: 60%;
+    text-align: center; 
+}
+
+#worldButton {
+    left: 10px;
+    margin-right: 10px;
+    position: absolute;
+    bottom: 10px;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+#worldIcon {
+    width: 29px;
+    position: relative;
+    right: 6px;
+    bottom: 3%;
+}
+
+#worldIcon:hover {
+    background: #E1AD01;
+}
+
+#flag {
+    height: 100px;
+    margin-left: 60px;
+}
+
+/*Photo Slide*/
+#photoButton {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    background: white;
+    opacity: 0.9;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+#photoIcon {
+    width: 36px;
+    position: relative;
+    left: -9px;
+    top: -3px;
+}
+
+
+#photoHolder {
+    margin-left: 0;
+    position: relative;
+}
+
+#photoSlide {
+    margin-left: auto;
+    position: relative;
+    margin-right: auto;
+    width: 100vw;
+    height: 250px;
+    background-color: gray;
+}
+
+#photoScreen
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #000;
+}
+
+#photoPic1, #photoPic2, #photoPic3 {
+    width: 200px;
+    height: 200px;
+    top: 25px;
+} 
+
+#photoModal {
+    display: none;
+}
+
+
+/* Slideshow container */
+#pics {
+    max-width:100%!important;
+    height:auto;
+    max-height:100%!important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+#carouselExampleControls {
+    background-color: gray;
+    top: 180px;
+    width: 100%;
+    height: 280px;
+    display: none;
+}
+
+#carouselExampleIndicator {
+    top: 10px;
+}
+.carousel-control-next {
+    max-width: 100%;
+}
+
+
+.numbertext {
+  color: #f2f2f2bb;
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+}
+
+
+#box
+{
+    width: 40px;
+    position: absolute;
+    margin-right: 12px;
+    z-index: 10;
+    display: none;
+    height: 45px;
+    bottom: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    right: 50%;
+    opacity: 0.8;
+    border-radius: 10px;
+}
+
+/*Covid Info*/
+#covidHeader {
+    font-family: 'Roboto Slab', serif;
+    margin-left: -90px;
+    font-size: 16px;
+}
+
+#covidButton {
+    position: absolute;
+    left: 10px;
+    bottom: 25%;
+}
+
+#covidIcon {
+    width: 36px;
+    position: relative;
+    right: 9px;
+    bottom: 4px;
+    display: block;
+}
+
+#covidNewDeaths, #deathsCountryTotal, #deathsWorldTotal {
+    font-size: 22px;
+    color: #DC143C;
+    font-weight: bold;
+    margin-left: 1px;
+    line-height: 2;
+    font-family: 'Roboto Slab', serif;
+}
+
+#covidNewCases, #casesCountryTotal, #casesWorldTotal {
+    font-size: 22px;
+    color: 	#9ACD32;
+    font-weight: bold;
+    margin-left: 1px;
+    line-height: 2;
+    font-family: 'Roboto Slab', serif;
+}
+
+#covid-dialog {
+    width: 100%;
+    margin-left: 59px; 
+    font-size: 16px;
+    height: 100%;
+  }
+
+#covid-content {
+    height: 385px;
+    width: 259px;
+    padding: 10px;
+}
+
+/*newspaper*/
+
+#newsButton {
+    left: 10px;
+    position: absolute;
+    height: 43px;
+    top: 35%;
+    background: white;
+    opacity: 0.8;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+#newsButton:hover {
+    background: lightgray;
+}
+
+#newsIcon {
+    width: 35px;
+    position: relative;
+    height: 24px;
+    right: 9px;
+    bottom: 1px;
+    display: block;
+}
+
+#news-dialog {
+    width: 100%;
+    margin-left: 10%; 
+  }
+
+.newsHead{
+    text-align: center;
+    position: relative;
+    top: 5px;
+}
+
+#newsHeadline1, #newsHeadline2, #newsHeadline3 {
+    font-size: 1.7vw;
+    margin-left: -47px;
+    margin-top: -11px;
+}
+
+#newsContent1, #newsContent2, #newsContent3 {
+    margin-left: 40px;
+    top: 55px;
+    margin-right: 31px;
+    position: absolute;
+    font-size: 1.3vw;
+    height: 44px;
+} 
+
+  
+#url1, #url2, #url3 {
+      margin-top: 6px;
+      text-align: center;
+      font-size: 0.7vw;
+      position: absolute;
+      width: 55vw;
+      left: 65px;
+      bottom: 5px;
+  }
+
+#newsCollumn{
+    font-size: 15px;
+    margin: -12px auto;
+    line-height: 11px;
+    display: inline-block;
+    vertical-align: top;
+    transition: all .7s;
+    width: 55em;
+    padding: 8px;
+}
+
+#newsPaper {
+    position: absolute;
+    top: 23%;
+    left: 19%;
+    right: 16%;
+    padding: 5px;
+    background: #F2EEE0;
+    height: 430px;
+    width: 61%;
+    display: none;
+    box-shadow: 3px 3px 4px 0 rgba(169, 169, 169);
+    border-radius: 5px;
+}
+
+
+#localTime {
+    font-size: 11px;
+    margin-bottom: 22px;
+    margin-top: -2px;
+    height: 19px;
+}
+
+div.contentOne {
+    background-color:white;
+    width: 100%;
+    height: 60px;
+    overflow: scroll;
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Droid Serif', serif;
+    font-size: 12px;
+    color: #2f2f2f;
+    text-align: center;
+  }
+
+  div.contentTwo {
+    background-color:white;
+    width: 100%;
+    height: 60px;
+    overflow: scroll;
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Droid Serif', serif;
+    font-size: 12px;
+    color: #2f2f2f;
+    text-align: center;
+  }
+
+  div.contentThree {
+    background-color:white;
+    width: 100%;
+    height: 60px;
+    overflow: scroll;
+    border: 2px solid black;
+    padding: 10px;
+    font-family: 'Droid Serif', serif;
+    font-size: 12px;
+    color: #2f2f2f;
+    text-align: center;
+  }
+
 p {
     margin-top: 0;
     margin-bottom: 7px;
-}
-
-.head{
-    text-align: center;
-    position: relative;
 }
 
 .subhead{
     text-transform: uppercase;
     border-bottom: 2px solid #2f2f2f;
     border-top: 2px solid #2f2f2f;
-    padding: 12px 0 12px 0;
     font-family: 'Droid Serif', serif;
     font-size: 14px;
     color: #2f2f2f;
@@ -30,22 +452,10 @@ p {
 
 .content{
     font-size: 0;
-    line-height: 0;
+    line-height: 1;
     word-spacing: -.31em;
     display: inline-block;
-    margin: 0px 2% 0 2%;
-
-
-}
-
-.collumn{
-    font-size: 14px;
-    line-height: 20px;
-    display: inline-block;
-    padding: 0 1% 0 1%;
-    vertical-align: top;
-    margin-bottom: 50px;
-    transition: all .7s;
+    width: 100%;
 }
 
 .collumn .headline.hl3{
@@ -81,6 +491,38 @@ p {
     display: block;
     margin: 0 auto;
 
+}
+
+#headlineOne {
+    font-size: 12px;
+    position: relative;
+    top: -15px;
+    text-align: center;
+}
+
+.newsPics {
+    width: 65px;
+    height: 65px;
+    position: absolute;
+    left: 7px;
+    top: 23px;
+}
+
+hr {
+    border: 1px solid black;
+    margin-top: 0rem;
+}
+
+.borderLeft {
+    border-left: 1px solid black;
+    color: green;
+}
+.greenText {
+    color: green;
+}
+
+#headerobjectswrapper {
+    height: 27px;
 }
 
 #mainArticle {
@@ -132,23 +574,3 @@ p {
 
 }
 
-#paper {
-    position: absolute;
-    top: 25%;
-    left: 20%;
-    right: 20%;
-    background: #F2EEE0;
-}
-
-div.ex1 {
-    background-color:white;
-    width: 100%;
-    height: 240px;
-    overflow: scroll;
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Droid Serif', serif;
-    font-size: 14px;
-    color: #2f2f2f;
-  }
-  

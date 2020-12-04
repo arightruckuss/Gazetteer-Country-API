@@ -8,10 +8,14 @@
 	<link rel="stylesheet" type="text/css" href="leaflet/leaflet.css"/>
 	<link rel='shortcut icon' type='image/x-icon' href='images/favicon.ico' />
 	<link rel="stylesheet" href="css/style.css" />
+	<link href="css/fonts/MartelSans-SemiBold.ttf" rel="stylesheet">
 	<link rel="stylesheet" href="leaflet/dist/MarkerCluster.css" />
 	<link rel="stylesheet" href="leaflet/dist/MarkerCluster.Default.css" />
 </head>
 <body>
+
+	  </div>
+
 	    <!--Map container-->
 		<div id="map" class="visible-scrollbar"></div>
 
@@ -25,99 +29,149 @@
 			</div>
 		</nav>
 
-		<div id="weatherInfo"></div>
+		<div id="weatherBox" id="weatherIcon">
+			<div class="weatherIcon">&#9925</div>
+			<div id="weatherInfo"></div>
+			<img class="weatherIcon" id="windIcon" src="images/windSock.png" />
+			<div id="weatherWind"></div>
+		</div>
+		
+		<!--Covid Info -->
+		<button type="button" id="covidButton" class="btn btn-primary" data-toggle="modal" data-target="#covidModal">
+			<img id="covidIcon" src="images/covidIcon.png" alt="Covid Icon" title="Covid Information"/>
+		</button>
+					
+		<div class="modal fade" id="covidModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" id="covid-dialog">
+			<div class="modal-content" id="covid-content">
+				<div class="modal-header" id="modal-header">
+				<h5 class="modal-title" id="covidHeader">Coronavirus<br>United Kingdom England</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+					New Cases 
+					<span id="covidNewCases">1234567</span>
+				</div>
+				<div class="modal-body">
+					New Deaths
+					<span id="covidNewDeaths">1234567</span>
+				</div>
+				<div class="modal-body"><hr>
+					Total Cases
+					<span id="casesCountryTotal">1234567</span>
+				</div>
+				<div class="modal-body">
+					Total Deaths
+					<span id="deathsCountryTotal">1234567</span>
+				</div>
+				<div class="modal-body"><hr>
+					World Cases
+					<span id="casesWorldTotal">1234567</span>
+				</div>
+				<div class="modal-body">
+					Worlds Deaths
+					<span id="deathsWorldTotal">1234567</span>
+				</div>
+			</div>
+			</div>
+		</div>
 
-		<div id="newsScreen"></div>
 		<div id="photoScreen"></div>
-		<div id="covidScreen"></div>
 
 		<!--Globol image-->
 		<div id="worldButton">
-			<button type="button" class="btn btn-outline-secondary"><img id="worldIcon" src="images/worldIcon.png"/></button>
-		</div>
-		<!--Newspaper-->
-		<div id="newsButton">
-			<button type="button" class="btn btn-outline-secondary" ><img id="newsIcon" src="images/newsIcon.png"/></button>
-			<img id="newsIcon2" src="images/newsIcon.png"/>
+			<button type="button" class="btn btn-outline-secondary"><img id="worldIcon" src="images/worldIcon.png" title="Take Me Home" /></button>
 		</div>
 
 
-		<div id="covidButton">
-			<button type="button" class="btn btn-outline-secondary" ><img id="covidIcon" src="images/covidIcon.png"/></button>
-			<img id="covidIcon2" src="images/covidIcon.png"/>
-		</div>
+		<!--News Info-->
+		<button type="button" id="newsButton" class="btn btn-primary" data-toggle="modal" data-target="#newsModal">
+			<img id="newsIcon" src="images/newsIcon.png" alt="News Icon" title="Country News"/>
+		</button>
+					
+		<div class="news modal fade" id="newsModal" tabindex="-1" aria-labelledby="newsModalLabel" aria-hidden="true">
+			<div class="modal-dialog" id="news-dialog">
 
-		<div id="newsPaper">
-				<div class="newsHead">
-					<div class="headerobjectswrapper">
-						<header id="newsHeader">Daily Country</header>
-					</div>
-				
-					<div class="subhead" id="localTime">Todays date</div>
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="newsHeadline1">Country Headline 1</h5>
 				</div>
-			<div id="newsContent">
-				<div class="content">
-					<div class="collumns">
-						<div class="collumn" id="newsCollum">
-							<div class="contentOne">News content</div><div class="collumn"></div>
-							<div id="url1"></div>
-							<br>
-							<div class="contentTwo">News content</div><div class="collumn"></div>
-							<div id="url2"></div>
-							<br>
-							<div class="contentThree">News content</div><div class="collumn"></div>
-							<div id="url3"></div>
+				<div class="overflow-auto" id="newsContent1">Country main content 1</div>
+				<div id="url1">Url1</div>
 
+			</div>
+			<br><br>
+
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="newsHeadline2">Country Headline 2</h5>
+				</div>
+				<div class="overflow-auto" id="newsContent2">Country main content 2</div>
+				<div id="url2">Url2</div>
+
+			</div>
+			<br><br>
+
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="newsHeadline3">Country Headline 3</h5>
+				</div>
+				<div class="overflow-auto" id="newsContent3">Country main content 3</div>
+				<div id="url3">Url3</div>
 				</div>
 			</div>
+
 		</div>
-		</div>
-	</div>
-		<div id="covidPaper">
-			<div class="covidhead">
-				<div class="headerobjectswrapper" id="headerobjectswrapper">
-					<header id="covidHeader">Coronavirus</header>
-				</div>
-			<hr>
-			</div>
-		<div id="covidContent">
-			<div class="content">
-				<div class="collumns">
-					<div class="collumn" id="covidCollumn">
-						<table class="table table-bordered">
-							<thead>
-							  <tr>
-								<th scope="col">New</th>
-								<th scope="col">Total</th>
-								<th scope="col">World</th>
-							  </tr>
-							</thead>
-							<tbody>
-							  <tr>
-								<td class="greenText">Cases <div id="covidNewCases">  1234567</div></td>
-								<td class="borderLeft">Cases  <div id="casesCountryTotal"> 1234567</div></td>
-								<td class="borderLeft">Cases  <div id="casesWorldTotal"> 1234567</div></td>
-							  </tr>
-							  <tr>
-								<td class="greenText">Deaths <div id="covidNewDeaths"> 1234567</div></td>
-								<td class="borderLeft">Deaths  <div id="deathsCountryTotal"> 1234567</div></td>
-								<td class="borderLeft">Deaths <div id="deathsWorldTotal"> 1234567</div></td>
-							  </tr>
-							</tbody>
-						  </table>
-						</div>
-					</div>
-				</div>
-			</div>
-	</div>
-	
-		<!--Photo button-->
+
+		<!-- Photos -->
 		<div id="photoButton">
-			<button type="button" class="btn btn-outline-secondary"><img id="photoIcon" src="images/camera_icon.png"/></button>
-			<img id="photoIcon2" src="images/camera_icon.png"/>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+			<img id="photoIcon" src="images/camera_icon.png" title="Country Photos" />
+		</button>
+		</div>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document" id="photoHolder">
+			<div class="modal-content" id="photoSlide">
+
+				<div class="modal-body">
+					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+						</ol>
+						<div class="carousel-inner">
+						  <div class="carousel-item active" id="pic1"> 
+							<img id="photoPic1">
+						  </div>
+						  <div class="carousel-item" id="pic2">
+							<img src="images/covidIcon.png" class="d-block w-100" alt="..." id="photoPic2">
+						  </div>
+						  <div class="carousel-item" id="pic3">
+							<img src="images/camera_icon.png" class="d-block w-100" alt="..." id="photoPic3">
+						  </div>
+						  <div class="carousel-item" id="pic4">
+							<img src="images/camera_icon.png" class="d-block w-100" alt="..." id="photoPic3">
+						  </div>
+						  <div class="carousel-item" id="pic5">
+							<img src="images/camera_icon.png" class="d-block w-100" alt="..." id="photoPic3">
+						  </div>
+							<a class="carousel-control-prev" href="#carouselExampleIndicators" id="carouselExampleIndicator" role="button" data-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						  </a>
+						  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
+						  </a>
+						</div>
+					  </div>
+				</div>
+			</div>
+			</div>
 		</div>
 
-		<!--Photo slide-->
 		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner" id="pics">
 			  <div class="carousel-item active" id="pic1"></div>
@@ -138,15 +192,15 @@
 			  <span class="carousel-control-next-icon" aria-hidden="true"></span>
 			  <span class="sr-only">Next</span>
 			</a>
+		</div>
 		  </div>
-		  </div>
-
 
 	<script src="leaflet/leaflet-src.js"></script>
-	<script src="js/jquery.js"></script>  
+	<script src="js/jquery.js"></script>  	
 	<script src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
 	<script src="bootstrap-4.5.3-dist/js/bootstrap.bundle.js"></script>
 	<script src="js/leaflet.markercluster-src.js"></script>
 	<script src="js/script.js"></script>
+
 </body>
 </html>
