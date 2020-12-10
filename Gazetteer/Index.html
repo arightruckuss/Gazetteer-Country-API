@@ -3,201 +3,301 @@
 <head>
 	<title>Gazetteer</title>
 	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="bootstrap-4.5.3-dist/css/bootstrap.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="bootstrap-4.5.3/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="leaflet/leaflet.css"/>
 	<link rel='shortcut icon' type='image/x-icon' href='images/favicon.ico' />
 	<link rel="stylesheet" href="css/style.css" />
-	<link href="css/fonts/MartelSans-SemiBold.ttf" rel="stylesheet">
 	<link rel="stylesheet" href="leaflet/dist/MarkerCluster.css" />
 	<link rel="stylesheet" href="leaflet/dist/MarkerCluster.Default.css" />
 </head>
 <body>
+	<!--Map container-->
+	<div id="map"></div>
 
-	  </div>
+	<!--Nav Bar-->
+	<nav class="navbar navbar-dark bg-dark" id="navBar">
+		<h2 id="gazetteerTitle">Gazetteer</h2>
 
-	    <!--Map container-->
-		<div id="map" class="visible-scrollbar"></div>
+		<div class="input-group mb-3" id="countrySelect">
+		<select class="custom-select" id="countryList">
+		</select>
+		</div>
+	</nav>
 
-		<!--Nav Bar-->
-		<nav class="navbar navbar-dark bg-dark" id="navBar">
-			<h2 id="gazetteerTitle">Gazetteer</h2>
+	<!--Weather Box-->
+	<div id="weatherBox">
+		<div class="weatherIcon" id="todayWeatherIcon">&#9925</div>
+		<div class="weatherTemp">5<small>&#8451<small></div>
+		<div class="weatherText">Overcast cloudy</div><br>
+		<img class="windIcon" src="images/windSock.png" />
+		<div class="weatherWind">15<br>km/h</div>
+	</div>
+
+	<!--Capital City image-->
+	<button type="button" id="capitalCityButton" class="btn btn-primary">
+		<img id="capitalCityIcon" src="images/capitalCityIcon1.png" alt="Capital City Icon" title="Capital City"/>
+	</button>
+
+	<!--Globol image-->
+	<button type="button" id="worldButton" class="btn btn-primary">
+		<img id="worldIcon" src="images/worldIcon.png" alt="World Icon" title="Global View"/>
+	</button>
+
+	<!--Home image-->
+	<button type="button" id="homeButton" class="btn btn-primary">
+		<img id="homeIcon" src="images/homeIcon.png" alt="Home Icon" title="Take Me Home"/>
+	</button>
+
+	<!-- Weather Button -->
+	<button type="button" id="weatherButton" class="btn btn-primary" data-toggle="modal" data-target="#weatherModal">
+		<img id="weatherIcon" src="images/weatherIcon.png" alt="News Icon" title="5 Day Weather Forecast"/>
+	</button>
 	
-			<div class="input-group mb-3" id="countrySelect">
-			<select class="custom-select" id="countryList">
-			</select>
+	<!-- Weather Info-->
+	<div class="modal fade" id="weatherModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		<div class="modal-content" id="weather-content">
+			<div class="modal-header">
+			<h5 class="modal-title" id="weatherModalLabel">5 Day Weather Forcast </h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
 			</div>
-		</nav>
-
-		<div id="weatherBox" id="weatherIcon">
-			<div class="weatherIcon">&#9925</div>
-			<div id="weatherInfo"></div>
-			<img class="weatherIcon" id="windIcon" src="images/windSock.png" />
-			<div id="weatherWind"></div>
+			<div class="modal-body" id="weather-body">
+				<div id="fiveDayForecastBox">
+					<div class="fiveDayWeatherBox" id="fiveDayBoxOne">
+						<div class="weatherDate" id="day1Weather">Today<hr></div>
+						<div class="weatherIcon" id="day1WeatherIcon">&#9925</div>
+						<div class="weatherTemp">5<small>&#8451<small></div>
+						<div class="weatherText">Overcast cloudy</div><br>
+						<img class="windIcon" id="dayOneWindIcon" src="images/windSock.png" />
+						<div class="weatherWind">15<br>km/h</div>
+					</div>
+					<div class="fiveDayWeatherBox">
+						<div class="weatherDate" id="day2Weather">Tomorrow<hr></div>
+						<div class="weatherIcon" id="day2WeatherIcon">&#9925</div>
+						<div class="weatherTemp" id="day2Temp">5<small>&#8451<small></div>
+						<div class="weatherText" id="day2Text">Overcast cloudy</div><br>
+						<img class="windIcon" src="images/windSock.png" />
+						<div class="weatherWind" id="day2Wind">15<br>km/h</div>
+					</div>
+					<div class="fiveDayWeatherBox">
+						<div class="weatherDate" id="day3Weather">3rd Day<hr></div>
+						<div class="weatherIcon" id="day3WeatherIcon">&#9925</div>
+						<div class="weatherTemp" id="day3Temp">5<small>&#8451<small></div>
+						<div class="weatherText" id="day3Text">Overcast cloudy</div><br>
+						<img class="windIcon" id="dayThreeWindIcon" src="images/windSock.png" />
+						<div class="weatherWind" id="day3Wind">15<br>km/h</div>
+					</div>
+					<div class="fiveDayWeatherBox">
+						<div class="weatherDate" id="day4Weather">4th Day<hr></div>
+						<div class="weatherIcon" id="day4WeatherIcon">&#9925</div>
+						<div class="weatherTemp" id="day4Temp">5<small>&#8451<small></div>
+						<div class="weatherText" id="day4Text">Overcast cloudy</div><br>
+						<img class="windIcon" id="dayFourWindIcon" src="images/windSock.png" />
+						<div class="weatherWind" id="day4Wind">15<br>km/h</div>
+					</div>
+					<div class="fiveDayWeatherBox">
+						<div class="weatherDate" id="day5Weather">5th Day<hr></div>
+						<div class="weatherIcon" id="day5WeatherIcon">&#9925</div>
+						<div class="weatherTemp" id="day5Temp">5<small>&#8451<small></div>
+						<div class="weatherText" id="day5Text">Overcast cloudy</div><br>
+						<img class="windIcon" src="images/windSock.png" />
+						<div class="weatherWind" id="day5Wind">15<br>km/h</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
 		</div>
-		
-		<!--Covid Info -->
-		<button type="button" id="covidButton" class="btn btn-primary" data-toggle="modal" data-target="#covidModal">
-			<img id="covidIcon" src="images/covidIcon.png" alt="Covid Icon" title="Covid Information"/>
-		</button>
+		</div>
+	</div>
+
+	<!--News Button-->
+	<button type="button" id="newsButton" class="btn btn-primary" data-toggle="modal" data-target="#newsModal">
+		<img id="newsIcon" src="images/newsIcon.png" alt="News Icon" title="Country News"/>
+	</button>
+	
+	<!--News Info-->
+	<div class="modal fade" id="newsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		<div class="modal-content" class="news-content" id="news-content">
+			<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel"> United Kingdom Headlines</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>
+			<div class="modal-body" id="news-body">
 					
-		<div class="modal fade" id="covidModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" id="covid-dialog">
-			<div class="modal-content" id="covid-content">
-				<div class="modal-header" id="modal-header">
-				<h5 class="modal-title" id="covidHeader">Coronavirus<br>United Kingdom England</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					New Cases 
-					<span id="covidNewCases">1234567</span>
-				</div>
-				<div class="modal-body">
-					New Deaths
-					<span id="covidNewDeaths">1234567</span>
-				</div>
-				<div class="modal-body"><hr>
-					Total Cases
-					<span id="casesCountryTotal">1234567</span>
-				</div>
-				<div class="modal-body">
-					Total Deaths
-					<span id="deathsCountryTotal">1234567</span>
-				</div>
-				<div class="modal-body"><hr>
-					World Cases
-					<span id="casesWorldTotal">1234567</span>
-				</div>
-				<div class="modal-body">
-					Worlds Deaths
-					<span id="deathsWorldTotal">1234567</span>
-				</div>
+				<p class="news-article" id="newsPic1"><img id="newsPics1" src="images/astronomyIcon.png"/>
+					<span class="titles" id="title1"></span><br>
+						<br>
+					<span id="url1"><a class="url" href="rucktooa.co.uk" target="_blank">URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1</a></span>
+				</p>
+				<p class="news-article" id="newsPic2"><img id="newsPics2" src="images/astronomyIcon.png"/>
+					<span class="titles" id="title2"></span><br>
+						<br>
+					<span id="url2"><a class="url" href="rucktooa.co.uk" target="_blank">URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1</a></span>
+				</p>
+				<p class="news-article" id="newsPic3"><img id="newsPics3" src="images/astronomyIcon.png"/>
+					<span class="titles" id="title3"></span><br>
+						<br>
+					<span id="url3"><a class="url" href="rucktooa.co.uk" target="_blank">URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1</a></span>
+				</p>
+				<p class="news-article" id="newsPic4"><img id="newsPics4" src="images/astronomyIcon.png"/>
+					<span class="titles" id="title4"></span><br>
+						<br>
+					<span id="url4"><a class="url" href="rucktooa.co.uk" target="_blank">URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1</a></span>
+				</p>
+				<p class="news-article" id="newsPic5"><img id="newsPics5" src="images/astronomyIcon.png"/>
+					<span class="titles" id="title5"></span><br>
+						<br>
+					<span id="url5"><a class="url" href="rucktooa.co.uk" target="_blank">URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1</a></span>
+				</p>
+				<p class="news-article" id="newsPic6"><img id="newsPics6" src="images/astronomyIcon.png"/>
+					<span class="titles" id="title6"></span><br>
+						<br>
+					<span id="url6"><a class="url" href="rucktooa.co.uk" target="_blank">URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1URL number 1</a></span>
+				</p>
+
 			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-button">Close</button>
 			</div>
 		</div>
-
-		<div id="photoScreen"></div>
-
-		<!--Globol image-->
-		<div id="worldButton">
-			<button type="button" class="btn btn-outline-secondary"><img id="worldIcon" src="images/worldIcon.png" title="Take Me Home" /></button>
 		</div>
+	</div>
 
+	<!--Exchange button -->
+	<button type="button" id="currencyButton" class="btn btn-primary" data-toggle="modal" data-target="#currencyModal">
+		<img id="currencyIcon" src="images/currencyIcon.png" alt="News Icon" title="Exchange Rate"/>
+	</button>
+	<!--Exchange rate info-->
+	<div class="modal fade" id="currencyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" id="curency-dialog">
+		<div class="modal-content" id="curency-content">
+			<div class="modal-header" id="modal-header">
+			<h5 class="modal-title" id="currencyHeader">UK Exchange Rate</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			</button>
+			</div>
+			<div class="currency-body" id="currency-body">
+				<div>
+					<span aria-hidden="true" id="ukRate">
+						<img id="ukRateIcon" src="images/gb.png" alt="UK Flag" title="UK Flag"/>GBP
+					</span> 
+					<span aria-hidden="true" id="otherRate">
+						<img id="otherRateIcon" src="images/currencyIcon.png" alt="Other Flag" title="Other Flag"/>Other
+					</span> 	
+				</div>
+				<div id="exchangeRateInfo">
+					1 GBP = 0.826493 Other
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-button">Close</button>
+			</div>
+		</div>
+		</div>
+	</div>
 
-		<!--News Info-->
-		<button type="button" id="newsButton" class="btn btn-primary" data-toggle="modal" data-target="#newsModal">
-			<img id="newsIcon" src="images/newsIcon.png" alt="News Icon" title="Country News"/>
+	<!--Covid Button-->
+	<button type="button" id="covidButton" class="btn btn-primary" data-toggle="modal" data-target="#covidModal">
+		<img id="covidIcon" src="images/covidIcon.png" alt="Covid Icon" title="Covid Data"/>
+	</button>
+
+	<!--Covid Info-->
+	<div class="modal fade" id="covidModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" id="covid-dialog">
+		<div class="modal-content" id="covid-content">
+			<div class="modal-header" id="modal-header">
+			<h5 class="modal-title" id="covidHeader">Coronavirus<br>United Kingdom England</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>
+			<div class="covid-body">
+				New Cases 
+				<span id="covidNewCases">1234567</span>
+			</div>
+			<div class="covid-body">
+				New Deaths
+				<span id="covidNewDeaths">1234567</span>
+			</div>
+			<div class="covid-body"><hr>
+				Total Cases
+				<span id="casesCountryTotal">1234567</span>
+			</div>
+			<div class="covid-body">
+				Total Deaths
+				<span id="deathsCountryTotal">1234567</span>
+			</div>
+			<div class="covid-body"><hr>
+				World Cases
+				<span id="casesWorldTotal">1234567</span>
+			</div>
+			<div class="covid-body">
+				Worlds Deaths
+				<span id="deathsWorldTotal">1234567</span>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-button">Close</button>
+			</div>
+		</div>
+		</div>
+	</div>
+
+<!--Photo slide-->
+<button type="button" id="photoButton" class="btn btn-primary" data-toggle="modal" data-target="#photoModal">
+	<img id="photoIcon" src="images/camera_icon.png" alt="photo Icon" title="Photo Slide"/>
+</button>
+  
+<div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" id="photo-dialog">
+	<div class="modal-content" id="photo-content">
+	<div class="modal-header">
+		<h5 class="modal-title" id="photoModalLabel">Country Pic's</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
 		</button>
-					
-		<div class="news modal fade" id="newsModal" tabindex="-1" aria-labelledby="newsModalLabel" aria-hidden="true">
-			<div class="modal-dialog" id="news-dialog">
-
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="newsHeadline1">Country Headline 1</h5>
-				</div>
-				<div class="overflow-auto" id="newsContent1">Country main content 1</div>
-				<div id="url1">Url1</div>
-
-			</div>
-			<br><br>
-
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="newsHeadline2">Country Headline 2</h5>
-				</div>
-				<div class="overflow-auto" id="newsContent2">Country main content 2</div>
-				<div id="url2">Url2</div>
-
-			</div>
-			<br><br>
-
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="newsHeadline3">Country Headline 3</h5>
-				</div>
-				<div class="overflow-auto" id="newsContent3">Country main content 3</div>
-				<div id="url3">Url3</div>
-				</div>
-			</div>
-
-		</div>
-
-		<!-- Photos -->
-		<div id="photoButton">
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-			<img id="photoIcon" src="images/camera_icon.png" title="Country Photos" />
-		</button>
-		</div>
-		
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document" id="photoHolder">
-			<div class="modal-content" id="photoSlide">
-
-				<div class="modal-body">
-					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" id="carouselHolder">
-						<ol class="carousel-indicators">
-						</ol>
-						<div class="carousel-inner">
-						  <div class="carousel-item active" id="pic1"> 
-							<img id="photoPic1">
-						  </div>
-						  <div class="carousel-item" id="pic2">
-							<img src="images/covidIcon.png" class="d-block w-100" alt="..." id="photoPic2">
-						  </div>
-						  <div class="carousel-item" id="pic3">
-							<img src="images/camera_icon.png" class="d-block w-100" alt="..." id="photoPic3">
-						  </div>
-						  <div class="carousel-item" id="pic4">
-							<img src="images/camera_icon.png" class="d-block w-100" alt="..." id="photoPic3">
-						  </div>
-							<a class="carousel-control-prev" href="#carouselExampleIndicators" id="carouselExampleIndicator" role="button" data-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="sr-only">Previous</span>
-						  </a>
-						  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="sr-only">Next</span>
-						  </a>
-						</div>
-					  </div>
-				</div>
+	</div>
+	<div class="modal-body">
+		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+			  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+			  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner" id="pic1">
+				<div class="carousel-item active"></div>
 			</div>
 			</div>
-		</div>
-
-		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-			<div class="carousel-inner" id="pics">
-			  <div class="carousel-item active" id="pic1"></div>
-			  <div class="carousel-item" id="pic2"></div>
-			  <div class="carousel-item" id="pic3"></div>
-			  <div class="carousel-item" id="pic4"></div>
-			  <div class="carousel-item" id="pic5"></div>
-			  <div class="carousel-item" id="pic6"></div>
-			  <div class="carousel-item" id="pic7"></div>
-			  <div class="carousel-item" id="pic8"></div>
-			  <div class="carousel-item" id="pic9"></div>
-			  <div class="carousel-item" id="pic10"></div>
-			<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 			  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 			  <span class="sr-only">Previous</span>
 			</a>
-			<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+			<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
 			  <span class="carousel-control-next-icon" aria-hidden="true"></span>
 			  <span class="sr-only">Next</span>
 			</a>
-		</div>
 		  </div>
-
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	</div>
+	</div>
+</div>
+</div>
+	
 	<script src="leaflet/leaflet-src.js"></script>
-	<script src="js/jquery.js"></script>  	
-	<script src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
-	<script src="bootstrap-4.5.3-dist/js/bootstrap.bundle.js"></script>
+	<script src="js/jquery.js"></script>  
+	<script src="bootstrap-4.5.3/js/bootstrap.js"></script>
+	<script src="bootstrap-4.5.3/js/bootstrap.bundle.js"></script>
 	<script src="js/leaflet.markercluster-src.js"></script>
 	<script src="js/script.js"></script>
 
 </body>
-</html>
+</html> 

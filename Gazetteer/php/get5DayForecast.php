@@ -2,7 +2,7 @@
 
 	$executionStartTime = microtime(true) / 1000;
 
-	$url='http://api.datanews.io/v1/headlines?apiKey=041sbnamsosy6lf21yvxjzve4&language=en&country=GB';
+	$url='http://api.openweathermap.org/data/2.5/forecast?appid=513dd1747f3b4fd4eeb27d17169c8593&q=' . $_REQUEST['country'];
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -24,6 +24,5 @@
 	header('Content-Type: application/json; charset=UTF-8');
 	header("Access-Control-Allow-Origin: *");
     echo json_encode($output); 
-    
 
 ?>

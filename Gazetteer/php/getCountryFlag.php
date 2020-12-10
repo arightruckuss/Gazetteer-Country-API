@@ -2,7 +2,7 @@
 
 	$executionStartTime = microtime(true) / 1000;
 
-	$url='http://api.datanews.io/v1/headlines?apiKey=041sbnamsosy6lf21yvxjzve4&language=en&country=GB';
+	$url = 'http://rucktooa.co.uk/country_flags/w2560/br.png';
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);

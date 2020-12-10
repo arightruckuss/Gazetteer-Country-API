@@ -2,7 +2,7 @@
 
 	$executionStartTime = microtime(true) / 1000;
 
-	$url='https://api.ipgeolocation.io/timezone?apiKey=88d46fe471484b378f2fde0d7845bab7&lat=' . $_REQUEST['lat'] . '&long='. $_REQUEST['long'];
+	$url='https://timezone.abstractapi.com/v1/current_time?api_key=19dfb53e30424a4a8bbbd3742165a61a&location=' . $_REQUEST['country'];
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);

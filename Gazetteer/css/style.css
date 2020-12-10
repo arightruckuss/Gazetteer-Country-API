@@ -1,9 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital@0;1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 
-body {
-    overflow-x: hidden;
+#loading-image {
+    position: absolute;
+    top: 80px;
+    left: 70px;
+    width: 60px; 
+    height: 45px;
+    border-radius: 90px;
 }
+
+/*Map*/
 #map {
     position: absolute;
     top: 70px;
@@ -45,27 +53,155 @@ body {
     visibility: visiable;
 }
 
-#countryInfo {
+#countryPopupPic {
+    width: 200px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
     display: block;
-    margin-left: 10px;
+}
+
+#flag {
+    width: 50%;
+}
+
+#countryPopupName {
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.leaflet-popup-content {
+    text-align: center;
+}
+
+#capitalCityButton {
+    right: 10px;
     position: absolute;
-    top: 20%;
+    bottom: 50%;
+    background: white;
     opacity: 0.8;
     border-radius: 10px;
-    top: 15%;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    width: 50px;
+    height: 50px;
 }
 
-#countryInfo button {
-    display: block;
+#capitalCityIcon {
+    width: 40px;
+    position: relative;
+    right: 8px;
+    bottom: 5px;
+    height: 45px;
+    opacity: 0.8;
 }
 
-#loading-image {
+#capitalCityButton:hover {
+    background: lightgrey;
+}
+
+#homeButton {
+    right: 10px;
+    position: absolute;
+    bottom: 12%;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    width: 50px;
+    height: 50px;
+}
+
+#homeIcon {
+    width: 36px;
+    position: relative;
+    right: 7px;
+    bottom: 3%;
+    height: 30px;
+}
+
+#homeButton:hover {
+    background: lightgrey;
+}
+
+#worldButton {
+    right: 10px;
+    position: absolute;
+    bottom: 31%;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    width: 50px;
+    height: 50px;
+}
+
+#worldIcon {
+    width: 38px;
+    position: relative;
+    right: 8px;
+    bottom: 1px;
+    height: 38px;
+}
+
+#worldButton:hover {
+    background: lightgrey;
+}
+
+/*Weather*/
+#weatherButton {
+    left: 10px;
     position: absolute;
     top: 80px;
-    left: 10px;
-    width: 60px; 
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    width: 50px;
+    height: 50px;
+}
+
+#weatherButton:hover {
+    background: lightgrey;
+}
+
+#weatherIcon {
+    width: 40px;
+    position: relative;
+    right: 8px;
+    bottom: 2px;
+    height: 40px;
+}
+
+#day2Weather {
+    font-size: 8px;
+}
+
+#dayOneWindIcon {
+    margin-bottom: -8px;
+    top: -11px;
+    position: relative;
+}
+
+#dayThreeWindIcon {
+    margin-bottom: -8px;
+    top: -2px;
+    position: relative;
+    height: 46px;
+}
+
+#dayFourWindIcon {
+    margin-bottom: -8px;
+    top: -2px;
+    position: relative;
     height: 45px;
-    border-radius: 90px;
+}
+
+.weatherIcon {
+    width: 45px;
+    position: relative;
+    right: -1px;
+    bottom: 2px;
+    height: 45px;
 }
 
 #weatherBox {
@@ -73,204 +209,270 @@ body {
     box-sizing: content-box;
     top: 80px;
     right: 10px;
-    width: 41px;
+    width: 55px;
     background-color: white;
     border-radius: 5px;
     border: 1px solid black; 
-    height: 140px; 
+    min-height: 175px; 
 }
 
-.weatherIcon {
-    position: relative;
-    width: 21px;
-    font-size: 24px;
-    left: 8px;
-    top: -1px;
-}
-
-#windIcon {
-    top: 8px;
-}
-
-#weatherInfo {
-    font-family: 'Merriweather', serif;
-    position: relative;
-    width: 36px;
-    left: 2px;
-    top: -30px;
-}
-
-#weatherText {
-    position: relative;
-    top: 26px;
-    font-size: 50%;
-    line-height: 1;
-    text-align: center;
-}
-
-#weatherWind {
-    font-family: 'Merriweather', serif;
-    position: absolute;
-    left: 6px;
-    top: 114px;
-    line-height: 12px;
-    font-size: 60%;
-    text-align: center; 
-}
-
-#worldButton {
-    left: 10px;
-    margin-right: 10px;
-    position: absolute;
-    bottom: 10px;
-    background: white;
-    opacity: 0.8;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
-}
-
-#worldIcon {
-    width: 29px;
-    position: relative;
-    right: 6px;
-    bottom: 3%;
-}
-
-#worldIcon:hover {
-    background: #E1AD01;
-}
-
-#flag {
-    height: 100px;
-    margin-left: 60px;
-}
-
-/*Photo Slide*/
-#photoButton {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    background: white;
-    opacity: 0.9;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
-}
-
-#photoIcon {
-    width: 36px;
-    position: relative;
-    left: -9px;
-    top: -3px;
-}
-
-
-#photoHolder {
-    margin-left: 0;
-    position: relative;
-    top: 117px;
-}
-
-#photoSlide {
-    margin-left: auto;
-    position: relative;
-    margin-right: auto;
-    width: 100vw;
-    height: 250px;
-    background-color: gray;
-}
-
-#photoScreen
-{
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: #000;
-}
-
-#photoPic1, #photoPic2, #photoPic3 {
-    width: 200px;
-    height: 200px;
-    top: 25px;
-} 
-
-#photoModal {
-    display: none;
-}
-
-
-/* Slideshow container */
-#pics {
-    max-width:100%!important;
-    height:auto;
-    max-height:100%!important;
+.windIcon {
+    width: 40px;
     display: block;
     margin-left: auto;
     margin-right: auto;
-  }
-
-#carouselExampleControls {
-    background-color: gray;
-    top: 180px;
-    width: 100%;
-    height: 280px;
-    display: none;
 }
 
-#carouselExampleIndicator {
-    top: 10px;
-}
-.carousel-control-next {
-    max-width: 100%;
-}
-
-
-.numbertext {
-  color: #f2f2f2bb;
-  font-size: 12px;
-  position: absolute;
-  top: 10px;
-  margin-left: 10px;
+.weatherIcon {
+    text-align: center;
+    font-size: 40px;
+    bottom: 5px;
 }
 
+.weatherTemp {
+    font-family: 'Merriweather', serif;
+    text-align: center;
+    font-size: 12px;
+}
 
-#box
-{
-    width: 40px;
+.weatherText {
+    font-family: 'Merriweather', serif;
+    text-align: center;
+    font-size: 11px;
+}
+
+.weatherWind {
+    font-family: 'Merriweather', serif;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.fiveDayWeatherBox {
+    position: relative;
+    width: 50px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+    min-height: 180px;
+    margin: 9px;
+    float: left;
+    height: 225px;
+}
+
+.weatherDate {
+    font-family: 'Merriweather', serif;
+    font-size: 11px;
+    text-align: center;
+    top: 13px;
+    position: relative;
+}
+
+#weather-body {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+
+#weather-content {
+    top: 72px;
+}
+
+/*News*/
+#newsButton {
+    left: 10px;
     position: absolute;
-    margin-right: 12px;
-    z-index: 10;
-    display: none;
-    height: 45px;
-    bottom: 20px;
+    top: 32%;
     background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
-    right: 50%;
     opacity: 0.8;
     border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    width: 50px;
+    height: 50px;
+}
+
+#newsIcon {
+    width: 36px;
+    position: relative;
+    right: 6px;
+    bottom: 3%;
+    height: 30px;
+}
+
+#newsButton:hover {
+    background: lightgrey;
+}
+
+#news-body {
+    max-height: 360px;
+    overflow: scroll;
+    float: left;
+}
+
+#news-content {
+    margin-top: 70px;
+    height: 500px;
+}
+
+#exampleModalLabel {
+    font-size: 20px;
+    font-family: 'Gentium Basic', serif;
+    margin-left: auto;
+}
+
+#newsPics1, #newsPics2, #newsPics3, #newsPics4, #newsPics5, #newsPics6 {
+    width: 120px;
+    height: 87px;
+    position: relative;
+    float: left;
+}
+
+.news-article {
+    border: 1px solid black;
+    font-size: 13px;
+}
+
+.titles {
+    font-weight: bold;
+    font-size: 16px;
+    position: relative;
+    font-family: 'Gentium Basic', serif;
+    top: 9px;
+    left: 4px;
+}
+
+#newsContent {
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.url {
+    display: table;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 10px;
+}
+
+#close-button {
+    font-size: 15px;
+    width: 65px;
+}
+
+/*Exchange Rate*/
+#currencyButton {
+    top: 70%;
+    left: 10px;
+    position: absolute;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    width: 50px;
+    height: 50px;
+}
+
+#currencyButton:hover {
+    background: lightgrey;
+}
+
+#currencyIcon {
+    width: 42px;
+    position: relative;
+    right: 9px;
+    bottom: 5px;
+    height: 44px;
+}
+
+#curency-content {
+    top: 155px;
+}
+
+#ukRate {
+    background: white;
+    color: black;
+    border-radius: 10px;
+    display: inline-block;
+    height: 55px;
+    width: 120px;
+    margin-top: 15px;
+    margin-right: 16px;
+}
+
+#otherRate {
+    background: white;
+    color: black;
+    border-radius: 10px;
+    display: inline-block;
+    height: 55px;
+    width: 120px;
+    margin-top: 15px;
+}
+
+#currency-body {
+    background: rgb(3, 88, 161) 20%;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 20px;
+    color: white;
+    height: 130px;
+    text-align: center;
+    line-height: 55px;
+}
+
+#currencyHeader {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 20px;
+}
+
+#ukRateIcon {
+    width: 35px;
+    position: relative;
+    right: 3px;
+    bottom: 5px;
+    height: 35px;
+    border-radius: 30px;
+}
+
+#otherRateIcon {
+    width: 35px;
+    position: relative;
+    right: 3px;
+    bottom: 5px;
+    height: 35px;
+    border-radius: 30px;
 }
 
 /*Covid Info*/
 #covidHeader {
     font-family: 'Roboto Slab', serif;
     margin-left: -18px;
-    font-size: 16px;
+    font-size: 20px;
     position: relative;
     bottom: 5px;
 }
 
 #covidButton {
-    position: absolute;
     left: 10px;
-    bottom: 25%;
+    position: absolute;
+    bottom: 10px;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    width: 50px;
+    height: 50px;
 }
 
 #covidIcon {
-    width: 36px;
+    width: 42px;
     position: relative;
     right: 9px;
-    bottom: 4px;
-    display: block;
+    bottom: 5px;
+    height: 44px;
+}
+
+#covidButton:hover {
+    background: lightgrey;
 }
 
 #covidNewDeaths, #deathsCountryTotal, #deathsWorldTotal {
@@ -293,288 +495,94 @@ body {
 
 #covid-dialog {
     width: 100%;
-    margin-left: 59px; 
-    font-size: 16px;
+    margin-left: 15%;
+    font-size: 13px;
     height: 100%;
   }
 
 #covid-content {
-    height: 385px;
     width: 259px;
     padding: 0 10px;
+    top: 100px;
 }
 
-/*newspaper*/
+.covid-body {
+    position: relative;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1rem;
+    margin: -15px;
+}
 
-#newsButton {
+.carousel {
+    position: relative;
+    background-color: grey;
+    height: 250px;
+}
+
+.carousel-inner {
+    position: relative;
+    overflow: hidden;
+    left: 9vw;
+    max-width: 87vw;
+    width: 500px;
+}
+
+.carousel-item {
+    width: 200px;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.d-block {
+    display: block !important;
+}
+
+#photoButton {
     left: 10px;
     position: absolute;
-    height: 43px;
-    top: 35%;
+    top: 52%;
     background: white;
     opacity: 0.8;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    width: 50px;
+    height: 50px;
 }
 
-#newsButton:hover {
-    background: lightgray;
-}
-
-#newsIcon {
-    width: 35px;
+#photoIcon {
+    width: 40px;
     position: relative;
-    height: 24px;
-    right: 9px;
-    bottom: 1px;
-    display: block;
+    right: 8px;
+    bottom: 3px;
+    height: 40px;
 }
 
-#news-dialog {
+#photoButton:hover {
+    background: lightgrey;
+}
+
+#photo-dialog {
+    width: 100vw;
+    top: 12%;
+}
+
+#photo1, #photo2, #photo3 {
     width: 100%;
-    margin-left: 10%; 
-  }
-
-.newsHead{
-    text-align: center;
-    position: relative;
-    top: 5px;
-}
-
-#newsHeadline1, #newsHeadline2, #newsHeadline3 {
-    font-size: 12px;
-    margin-left: 4px;
-    margin-top: -9px;
-    margin-right: 6px;
-}
-
-#newsContent1, #newsContent2, #newsContent3 {
-    margin-left: 20px;
-    top: 5px;
-    margin-right: 20px;
-    position: relative;
-    font-size: 1.3vh;
-    height: 44px;
+    height: 100%;
 } 
 
-  
-#url1, #url2, #url3 {
-    top: 15px;
-    text-align: center;
-    font-size: 6px;
+.carousel-inner {
     position: relative;
-    margin-right: 25px;
-    margin-left: 16px;
-  }
-
-#newsCollumn{
-    font-size: 15px;
-    margin: -12px auto;
-    line-height: 11px;
-    display: inline-block;
-    vertical-align: top;
-    transition: all .7s;
-    width: 55em;
-    padding: 8px;
-}
-
-#newsPaper {
-    position: absolute;
-    top: 23%;
-    left: 19%;
-    right: 16%;
-    padding: 5px;
-    background: #F2EEE0;
-    height: 430px;
-    width: 61%;
-    display: none;
-    box-shadow: 3px 3px 4px 0 rgba(169, 169, 169);
-    border-radius: 5px;
-}
-
-
-#localTime {
-    font-size: 11px;
-    margin-bottom: 22px;
-    margin-top: -2px;
-    height: 19px;
-}
-
-div.contentOne {
-    background-color:white;
     width: 100%;
-    height: 60px;
-    overflow: scroll;
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Droid Serif', serif;
-    font-size: 12px;
-    color: #2f2f2f;
-    text-align: center;
-  }
-
-  div.contentTwo {
-    background-color:white;
-    width: 100%;
-    height: 60px;
-    overflow: scroll;
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Droid Serif', serif;
-    font-size: 12px;
-    color: #2f2f2f;
-    text-align: center;
-  }
-
-  div.contentThree {
-    background-color:white;
-    width: 100%;
-    height: 60px;
-    overflow: scroll;
-    border: 2px solid black;
-    padding: 10px;
-    font-family: 'Droid Serif', serif;
-    font-size: 12px;
-    color: #2f2f2f;
-    text-align: center;
-  }
-
-p {
-    margin-top: 0;
-    margin-bottom: 7px;
+    overflow: hidden;
+    left: 48px;
 }
 
-.subhead{
-    text-transform: uppercase;
-    border-bottom: 2px solid #2f2f2f;
-    border-top: 2px solid #2f2f2f;
-    font-family: 'Droid Serif', serif;
-    font-size: 14px;
-    color: #2f2f2f;
-
+.carousel-item {
+    width: 72%;
+    height: 250px;      
+    left: 2.5%
 }
-
-.content{
-    font-size: 0;
-    line-height: 1;
-    word-spacing: -.31em;
-    display: inline-block;
-    width: 100%;
-}
-
-.collumn .headline.hl3{
-    font-weight: 400;
-    font-style: italic;
-    font-size: 23px;
-    box-sizing: border-box;
-    padding: 10px 0 10px 0;
-    font-family: 'Droid Serif', serif;
-    color: #2f2f2f;
-}
-.collumn .headline.hl4{
-    font-weight: 700;
-    font-size: 11px;
-    box-sizing: border-box;
-    font-family: 'Droid Serif', serif;
-    color: #2f2f2f;
-}
-
-.collumn .headline.hl4:before{
-    border-top: 1px solid #2f2f2f;
-    content: '';
-    width: 100px;
-    height: 7px;
-    display: block;
-    margin: 0 auto;
-}
-.collumn .headline.hl4:after{
-    border-bottom: 1px solid #2f2f2f;
-    content: '';
-    width: 100px;
-    height: 10px;
-    display: block;
-    margin: 0 auto;
-
-}
-
-#headlineOne {
-    font-size: 12px;
-    position: relative;
-    top: -15px;
-    text-align: center;
-}
-
-.newsPics {
-    width: 65px;
-    height: 65px;
-    position: absolute;
-    left: 7px;
-    top: 23px;
-}
-
-hr {
-    border: 1px solid black;
-    margin-top: 0rem;
-}
-
-.borderLeft {
-    border-left: 1px solid black;
-    color: green;
-}
-.greenText {
-    color: green;
-}
-
-#headerobjectswrapper {
-    height: 27px;
-}
-
-#mainArticle {
-    font-family: 'Droid Serif', serif;
-    font-size: 14px;
-    color: #2f2f2f;
-}
-
-.media {
-    -webkit-filter: sepia(80%) contrast(1) opacity(0.8);
-    filter: sepia(80%) grayscale(1) contrast(1) opacity(0.8);
-    mix-blend-mode: multiply;
-    width: 100%;
-}
-/*________________________________________________________________________________________________________________________________*/
-/*MEDIAQUERIES*/
-@media only all and (max-width: 1300px) {
-    .weatherforcastbox{
-        display: none;
-    }
-
-}
-@media only all and (max-width: 1200px) {
-    .collumn{
-        width: 100%;
-    }
-
-}
-    @media only all and (max-width: 900px) {
-    .collumn{
-        width: 100%;
-    }
-
-}
-@media only all and (max-width: 600px) {
-    .collumn{
-        width: 100%;
-    }
-	.collumn + .collumn {
-				border-left: none;
-      	border-bottom: 1px solid #2f2f2f;
-	}
-    header{
-        max-width: 320px;
-        font-size: 30px;
-        line-height: 26px;
-        overflow: hidden;
-    }
-
-}
-

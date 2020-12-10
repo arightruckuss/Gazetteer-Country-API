@@ -1,5 +1,4 @@
 /* required styles */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
 .leaflet-pane,
 .leaflet-tile,
@@ -511,10 +510,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	opacity: 0.9;
 	color: #333;
 	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
-	margin-left: 16px;
-	font-family: 'Roboto', sans-serif;
+	margin-left: 30px;
 	}
-
 .leaflet-container a.leaflet-popup-close-button {
 	position: absolute;
 	top: 0;
