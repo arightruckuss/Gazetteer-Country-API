@@ -344,7 +344,8 @@ $.ajax({
             $('#day5Wind').html($day5WindSpeed + '<br>km/h');
 
     }}});//Country weather
-            
+
+
 $.ajax({
     url: "php/getCountryPhoto.php",
     type: 'POST',
@@ -354,14 +355,10 @@ $.ajax({
     },
     success: function(result) {
         if (result.status.name == "ok") {
-            $('#photoModalLabel').html($countryName + ' Pics');
             console.log(result);
             var i, countryImages = '';
             for (i = 0; i < result['data'].length; i++) {
                 $countryPhoto = result['data'][i]['webformatURL'];
-                countryImages = '';
-                console.log($countryPhoto);
-                console.log($countryPhoto);
                 countryImages = '<div class="carousel-item"><img class="d-block w-100" src="' + $countryPhoto+ '" id="photo1" alt="First slide"></div>';
                 $('#pic1').append(countryImages);
             }
@@ -424,6 +421,14 @@ $.ajax({
                 $covidTodayDeaths = result['data']['todayDeaths'];
                 $covidTotalCases = result['data']['cases'];
                 $covidTotalDeaths = result['data']['deaths'];
+                function formatNumber(num) {
+                    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                }
+                $covidTodayCases = formatNumber($covidTodayCases);
+                $covidTodayDeaths = formatNumber($covidTodayDeaths);
+                $covidTotalCases = formatNumber($covidTotalCases);
+                $$covidTotalDeaths = formatNumber($covidTotalDeaths);
+
                 $('#covidHeader').html('Coronavirus<br>' + $countryName);
                 $('#covidNewCases').html($covidTodayCases);
                 $('#covidNewDeaths').html($covidTodayDeaths);

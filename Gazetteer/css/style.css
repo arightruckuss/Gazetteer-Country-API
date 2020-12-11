@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital@0;1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap');
 
 #loading-image {
     position: absolute;
@@ -37,11 +35,13 @@
 }
 
 #gazetteerTitle {
-    color: #150485;
-    font-family: 'Gentium Basic', serif;
+    color: #EEE8AA;
+    font-family: 'Merriweather Sans', sans-serif;
     margin-left: -10px;
     letter-spacing: .1em;
     font-size: 1.8em;
+    font-weight: bold;
+    text-shadow: 2px 2px #000000;
 }
 
 #countrySelect {
@@ -67,7 +67,7 @@
 
 #countryPopupName {
     font-size: 30px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Merriweather Sans', sans-serif;
 }
 
 .leaflet-popup-content {
@@ -75,9 +75,9 @@
 }
 
 #capitalCityButton {
-    right: 10px;
+    left: 10px;
     position: absolute;
-    bottom: 50%;
+    top: 140px;
     background: white;
     opacity: 0.8;
     border-radius: 10px;
@@ -100,9 +100,9 @@
 }
 
 #homeButton {
-    right: 10px;
+    left: 10px;
     position: absolute;
-    bottom: 12%;
+    top: 80px;
     background: white;
     opacity: 0.8;
     border-radius: 10px;
@@ -124,9 +124,9 @@
 }
 
 #worldButton {
-    right: 10px;
+    left: 10px;
     position: absolute;
-    bottom: 31%;
+    top: 200px;
     background: white;
     opacity: 0.8;
     border-radius: 10px;
@@ -151,7 +151,7 @@
 #weatherButton {
     left: 10px;
     position: absolute;
-    top: 80px;
+    top: 320px;
     background: white;
     opacity: 0.8;
     border-radius: 10px;
@@ -199,7 +199,7 @@
 .weatherIcon {
     width: 45px;
     position: relative;
-    right: -1px;
+    right: -2px;
     bottom: 2px;
     height: 45px;
 }
@@ -230,19 +230,19 @@
 }
 
 .weatherTemp {
-    font-family: 'Merriweather', serif;
+    font-family: 'Merriweather Sans', sans-serif;
     text-align: center;
     font-size: 12px;
 }
 
 .weatherText {
-    font-family: 'Merriweather', serif;
+    font-family: 'Merriweather Sans', sans-serif;
     text-align: center;
     font-size: 11px;
 }
 
 .weatherWind {
-    font-family: 'Merriweather', serif;
+    font-family: 'Merriweather Sans', sans-serif;
     text-align: center;
     font-size: 12px;
     margin-top: 2px;
@@ -261,7 +261,7 @@
 }
 
 .weatherDate {
-    font-family: 'Merriweather', serif;
+    font-family: 'Merriweather Sans', sans-serif;
     font-size: 11px;
     text-align: center;
     top: 13px;
@@ -282,7 +282,7 @@
 #newsButton {
     left: 10px;
     position: absolute;
-    top: 32%;
+    top: 380px;
     background: white;
     opacity: 0.8;
     border-radius: 10px;
@@ -316,7 +316,7 @@
 
 #exampleModalLabel {
     font-size: 20px;
-    font-family: 'Gentium Basic', serif;
+    font-family: 'Merriweather Sans', sans-serif;
     margin-left: auto;
 }
 
@@ -334,9 +334,9 @@
 
 .titles {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
     position: relative;
-    font-family: 'Gentium Basic', serif;
+    font-family: 'Merriweather Sans', sans-serif;
     top: 9px;
     left: 4px;
 }
@@ -361,7 +361,7 @@
 
 /*Exchange Rate*/
 #currencyButton {
-    top: 70%;
+    top: 500px;
     left: 10px;
     position: absolute;
     background: white;
@@ -411,7 +411,7 @@
 
 #currency-body {
     background: rgb(3, 88, 161) 20%;
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Merriweather Sans', sans-serif;
     font-size: 20px;
     color: white;
     height: 130px;
@@ -420,7 +420,7 @@
 }
 
 #currencyHeader {
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Merriweather Sans', sans-serif;
     font-size: 20px;
 }
 
@@ -444,7 +444,7 @@
 
 /*Covid Info*/
 #covidHeader {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Merriweather Sans', sans-serif;
     margin-left: -18px;
     font-size: 20px;
     position: relative;
@@ -454,7 +454,7 @@
 #covidButton {
     left: 10px;
     position: absolute;
-    bottom: 10px;
+    top: 440px;
     background: white;
     opacity: 0.8;
     border-radius: 10px;
@@ -467,7 +467,7 @@
     width: 42px;
     position: relative;
     right: 9px;
-    bottom: 5px;
+    top: -4px;
     height: 44px;
 }
 
@@ -481,7 +481,7 @@
     font-weight: bold;
     margin-left: 1px;
     line-height: 2;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Merriweather Sans', sans-serif;
 }
 
 #covidNewCases, #casesCountryTotal, #casesWorldTotal {
@@ -490,7 +490,7 @@
     font-weight: bold;
     margin-left: 1px;
     line-height: 2;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Merriweather Sans', sans-serif;
 }
 
 #covid-dialog {
@@ -523,13 +523,14 @@
 .carousel-inner {
     position: relative;
     overflow: hidden;
-    left: 9vw;
-    max-width: 87vw;
-    width: 500px;
+    max-width: 100%;
+    width: 100%;
 }
 
 .carousel-item {
-    width: 200px;
+    width: 100%;
+    height: 250px;
+    left: 1;
 }
 
 .w-100 {
@@ -543,7 +544,7 @@
 #photoButton {
     left: 10px;
     position: absolute;
-    top: 52%;
+    top: 260px;
     background: white;
     opacity: 0.8;
     border-radius: 10px;
@@ -574,15 +575,11 @@
     height: 100%;
 } 
 
-.carousel-inner {
-    position: relative;
+.carousel-item {
     width: 100%;
-    overflow: hidden;
-    left: 48px;
+    height: 250px;      
 }
 
-.carousel-item {
-    width: 72%;
-    height: 250px;      
-    left: 2.5%
+#modal-footer {
+    background: white;
 }

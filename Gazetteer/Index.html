@@ -17,7 +17,7 @@
 
 	<!--Nav Bar-->
 	<nav class="navbar navbar-dark bg-dark" id="navBar">
-		<h2 id="gazetteerTitle">Gazetteer</h2>
+		<h2 id="gazetteerTitle">gazetteer</h2>
 
 		<div class="input-group mb-3" id="countrySelect">
 		<select class="custom-select" id="countryList">
@@ -108,7 +108,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="modal-footer">
+			<div class="modal-footer" id="modal-footer">
 			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
 		</div>
@@ -259,7 +259,7 @@
 <div class="modal-dialog" id="photo-dialog">
 	<div class="modal-content" id="photo-content">
 	<div class="modal-header">
-		<h5 class="modal-title" id="photoModalLabel">Country Pic's</h5>
+		<h5 class="modal-title" id="photoModalLabel">Picture Slide Show</h5>
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 		</button>
@@ -272,16 +272,16 @@
 			  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 			</ol>
 			<div class="carousel-inner" id="pic1">
-				<div class="carousel-item active"></div>
+				<div class="carousel-item active" id="carousel-item active"></div>
 			</div>
 			</div>
+			<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			  </a>
 			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 			  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 			  <span class="sr-only">Previous</span>
-			</a>
-			<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-			  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			  <span class="sr-only">Next</span>
 			</a>
 		  </div>
 	</div>
