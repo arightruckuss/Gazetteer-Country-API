@@ -192,6 +192,7 @@ $.ajax({
         "clouds": cloudMap,
         "Land Temp": landTemp,
         "Home": home,
+        "Marker": new_marker,
     }
 
 var layerscontrol = L.control.layers(mapBaselayers, overlayMaps, {position: 'bottomright'}).addTo(map); 
