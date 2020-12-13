@@ -1,7 +1,7 @@
 //Page loading
 $('body').append('<div style="" id="loadingDiv"><img id="loading-image" src="images/ajax-loader.gif" alt="Loading..." /></div></div>');
 $(window).on('load', function(){
-    setTimeout(removeLoader, 4000); //wait for page load PLUS two seconds.
+    setTimeout(removeLoader, 5000); //wait for page load PLUS two seconds.
 });
 function removeLoader(){
     $( "#loadingDiv" ).fadeOut(500, function() {
@@ -64,7 +64,6 @@ $.getJSON('php/getCountryList.php', function(data) {
     for(var i = 0; i < data['data'].length; i++) {
         names = data['data'][i]['name'];
         code = data['data'][i]['code'];
-        
         $('#countryList').append($('<option value='+ code +'>' + names + '</option>'));      
         }
     });//Country List 
@@ -86,9 +85,8 @@ $("#countryList").change(function() {
                         if(result['data'][i]['code'] == $listCountryCode){
                             $countryName = result['data'][i]['name'];
                             $countryCode = result['data'][i]['code'];
-
-
-              
+                            console.log($countryCode)
+    
     $.ajax({
         url: "php/getLocationLatLng.php",
         type: 'POST',
@@ -228,15 +226,27 @@ $.ajax({
     success: function(result) {
 
         if (result.status.name == "ok") {
-            $countryISO2 = result['data']['alpha2Code'];
-            $capital = result['data']['capital'];
-            $population = result['data']['population'];
-            $language = result['data']['languages'][0]['name'];
-            $continent = result['data']['region'];
-            $callingCode = result['data']['callingCodes'][0];
-            $currencyName = result['data']['currencies'][0]['name'];
-            $currencyCode = result['data']['currencies'][0]['code'];
-            $currencySymbol = result['data']['currencies'][0]['symbol'];
+            if(result['data']['languages'] === undefined){
+                $countryISO2 =  'N/A';
+                $capital = 'N/A';
+                $population = 'N/A';
+                $language = 'N/A';
+                $continent = 'N/A';
+                $callingCode = 'N/A';
+                $currencyName = 'N/A';
+                $currencyCode = 'N/A';
+                $currencySymbol = 'N/A';
+            }else {
+                $countryISO2 = result['data']['alpha2Code'];
+                $capital = result['data']['capital'];
+                $population = result['data']['population'];
+                $language = result['data']['languages'][0]['name'];
+                $continent = result['data']['region'];
+                $callingCode = result['data']['callingCodes'][0];
+                $currencyName = result['data']['currencies'][0]['name'];
+                $currencyCode = result['data']['currencies'][0]['code'];
+                $currencySymbol = result['data']['currencies'][0]['symbol'];
+            }
     
             function formatNumber(num) {
                 return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
@@ -274,6 +284,30 @@ $.ajax({
             });
 
 $.ajax({
+    url: "php/getDayOfTheWeek.php",
+    type: 'POST',
+    dataType: 'json',
+    data: {
+    },
+    success: function(result) {
+        if (result.status.name == "ok") {
+            $dayOfTheWeek = result['data']['dayOfTheWeek'];
+            $('#day1Weather').html($dayOfTheWeek);
+        }}});//Day of the week
+
+$.ajax({
+    url: "php/getTomorrowDayOfTheWeek.php",
+    type: 'POST',
+    dataType: 'json',
+    data: {
+    },
+    success: function(result) {
+        if (result.status.name == "ok") {
+            $tomorrowDayOfTheWeek = result['data']['dayOfTheWeek'];
+            $('#day2Weather').html($tomorrowDayOfTheWeek);
+        }}});//Day of the week
+
+$.ajax({
     url: "php/get5DayForecast.php",
     type: 'POST',
     dataType: 'json',
@@ -289,29 +323,72 @@ $.ajax({
             $day4Condition  = result['data']['list'][3]['weather'][0]['main'];
             $day5Condition  = result['data']['list'][4]['weather'][0]['main'];
             $('.weatherText').html($condition);
-            $('#day2Text').html($day2Condition);
-            $('#day3Text').html($day3Condition);
-            $('#day4Text').html($day4Condition);
-            $('#day5Text').html($day5Condition);
+
 
             if($condition === "Rain"){
-                $weatherCondition = 'images/rainIcon.png'
+                $weatherDay1Icon = 'images/rainIcon.png'
             } else if($condition === "Clear"){
-                $weatherCondition = 'images/sunIcon.png'
+                $weatherDay1Icon = 'images/sunIcon.png'
             } else if($condition === "Clouds"){
-                $weatherCondition = 'images/cloudIcon.png'
-            } else if($condition === "snow"){
-                $weatherCondition = 'images/snowIcon.png'
-            } else if($condition === "Overcast cloudy"){
-                $weatherCondition = 'images/overcastIcon.png'
-            }
-                $('#todayWeatherIcon').html('<img src="' + $weatherCondition + '" class="weatherIcon" />');
-                $('#day1WeatherIcon').html('<img src="' + $weatherCondition + '" class="weatherIcon" />');
-                $('#day2WeatherIcon').html('<img src="' + $weatherCondition + '" class="weatherIcon" />');
-                $('#day3WeatherIcon').html('<img src="' + $weatherCondition + '" class="weatherIcon" />');
-                $('#day4WeatherIcon').html('<img src="' + $weatherCondition + '" class="weatherIcon" />');
-                $('#day5WeatherIcon').html('<img src="' + $weatherCondition + '" class="weatherIcon" />');
-                
+                $weatherDay1Icon = 'images/cloudIcon.png'
+            } else if($condition === "Snow"){
+                $weatherDay1Icon  = 'images/snowIcon.png'
+            } 
+            $('#todayWeatherIcon').html('<img src="' + $weatherDay1Icon + '" class="weatherIcon" />');
+            $('#day1WeatherIcon').html('<img src="' + $weatherDay1Icon + '" class="weatherIcon" />');
+            console.log($condition);
+            if($day2Condition === "Rain"){
+                $weatherDay2Icon = 'images/rainIcon.png'
+            } else if($$day2Condition === "Clear"){
+                $weatherDay2Icon = 'images/sunIcon.png'
+            } else if($day2Condition=== "Clouds"){
+                $weatherDay2Icon = 'images/cloudIcon.png'
+            } else if($day2Condition === "Snow"){
+                $weatherDay2Icon = 'images/snowIcon.png'
+            } 
+            $('#day2WeatherIcon').html('<img src="' +$weatherDay2Icon + '" class="weatherIcon" />');
+            $('#day2Text').html($day2Condition);
+            console.log($day2Condition);
+
+            if($day3Condition === "Rain"){
+                $weatherDay3Icon = 'images/rainIcon.png'
+            } else if($day3Condition=== "Clear"){
+                $weatherDay3Icon = 'images/sunIcon.png'
+            } else if($day3Condition=== "Clouds"){
+                $weatherDay3Icon  = 'images/cloudIcon.png'
+            } else if($day3Condition === "Snow"){
+                $weatherDay3Icon = 'images/snowIcon.png'
+            } 
+            $('#day3WeatherIcon').html('<img src="' +$weatherDay3Icon + '" class="weatherIcon" />');
+            $('#day3Text').html($day3Condition);
+            console.log($day3Condition);
+
+            if($day4Condition === "Rain"){
+                $weatherDay4Icon = 'images/rainIcon.png'
+            } else if($day4Condition === "Clear"){
+                $weatherDay4Icon = 'images/sunIcon.png'
+            } else if($day4Condition === "Clouds"){
+                $weatherDay4Icon = 'images/cloudIcon.png'
+            } else if($day4Condition=== "Snow"){
+                $weatherDay4Icon = 'images/snowIcon.png'
+            } 
+            $('#day4WeatherIcon').html('<img src="' +$weatherDay4Icon + '" class="weatherIcon" />');
+            $('#day4Text').html($day4Condition);
+            console.log($day4Condition);
+
+            if($day5Condition === "Rain"){
+                $weatherDay5Icon = 'images/rainIcon.png'
+            } else if($day5Condition === "Clear"){
+                $weatherDay5Icon = 'images/sunIcon.png'
+            } else if($day5Condition === "Clouds"){
+                $weatherDay5Icon = 'images/cloudIcon.png'
+            } else if($day5Condition === "Snow"){
+                $weatherDay5Icon = 'images/snowIcon.png'
+            } 
+            $('#day5WeatherIcon').html('<img src="' +$weatherDay5Icon+ '" class="weatherIcon" />');
+            $('#day5Text').html($day5Condition);
+            console.log($day5Condition);
+
             $kelvin = result['data']['list'][0]['main']['temp'];
             $celsius = $kelvin - 273.15;
             $roundedCelsius = $celsius.toFixed(1);
@@ -346,7 +423,6 @@ $.ajax({
 
     }}});//Country weather
 
-
 $.ajax({
     url: "php/getCountryPhoto.php",
     type: 'POST',
@@ -356,17 +432,12 @@ $.ajax({
     },
     success: function(result) {
         if (result.status.name == "ok") {
-            console.log(result);
             var i, countryImages = '';
             for (i = 0; i < result['data'].length; i++) {
                 $countryPhoto = result['data'][i]['webformatURL'];
                 countryImages = '<div class="carousel-item"><img class="d-block w-100" src="' + $countryPhoto+ '" id="photo1" alt="First slide"></div>';
-                $('#pic1').append(countryImages);
+                $('#pic1').append('<div class="carousel-item"><img class="d-block w-100" src="' + $countryPhoto+ '" id="photo1" alt="First slide"></div>');
             }
-            }}});//PhotoSlide
-        }}});//countryPopup pic
-    }}});//Country Borders
-}}});//country Lat Lng info 
 
 $.ajax({
     url: "php/getCovidWorldTotal.php",
@@ -443,49 +514,57 @@ $.ajax({
     type: 'POST',
     dataType: 'json',
     data: {
+        country: $countryISO2,
     },
     success: function(result) {
         if (result.status.name == "ok") {
+            if(result['data']['hits'][0] == undefined || result['data']['hits'][0] == null) {
+                $('#exampleModalLabel').html($countryName + ' Headlines Not Found!');
+            } else {
+                $('#exampleModalLabel').html($language + ' Headlines');
+                $newsPic1 = result['data']['hits'][0]['imageUrl'];
+                $('#newsPics1').attr("src", $newsPic1);
+                $newsPic2 = result['data']['hits'][1]['imageUrl'];
+                $('#newsPics2').attr("src", $newsPic2);
+                $newsPic3 = result['data']['hits'][2]['imageUrl'];
+                $('#newsPics3').attr("src", $newsPic3);
+                $newsPic4 = result['data']['hits'][3]['imageUrl'];
+                $('#newsPics4').attr("src", $newsPic4);
+                $newsPic5 = result['data']['hits'][4]['imageUrl'];
+                $('#newsPics5').attr("src", $newsPic5);
+                $newsPic6 = result['data']['hits'][5]['imageUrl'];
+                $('#newsPics6').attr("src", $newsPic6);
 
-            $newsPic1 = result['data']['hits'][0]['imageUrl'];
-            $('#newsPics1').attr("src", $newsPic1);
-            $newsPic2 = result['data']['hits'][1]['imageUrl'];
-            $('#newsPics2').attr("src", $newsPic2);
-            $newsPic3 = result['data']['hits'][2]['imageUrl'];
-            $('#newsPics3').attr("src", $newsPic3);
-            $newsPic4 = result['data']['hits'][3]['imageUrl'];
-            $('#newsPics4').attr("src", $newsPic4);
-            $newsPic5 = result['data']['hits'][4]['imageUrl'];
-            $('#newsPics5').attr("src", $newsPic5);
-            $newsPic6 = result['data']['hits'][5]['imageUrl'];
-            $('#newsPics6').attr("src", $newsPic6);
-
-            $newsTitle1 = result['data']['hits'][0]['title'];
-            $('#title1').html($newsTitle1);
-            $newsTitle2 = result['data']['hits'][1]['title'];
-            $('#title2').html($newsTitle2);
-            $newsTitle3 = result['data']['hits'][2]['title'];
-            $('#title3').html($newsTitle3);
-            $newsTitle4 = result['data']['hits'][3]['title'];
-            $('#title4').html($newsTitle4);
-            $newsTitle5 = result['data']['hits'][4]['title'];
-            $('#title5').html($newsTitle5);
-            $newsTitle6 = result['data']['hits'][5]['title'];
-            $('#title6').html($newsTitle6);
-            
-            $newsurl1 = result['data']['hits'][0]['url'];
-            $('#url1').html('<a class="url" href="'+ $newsurl1+'" target="_blank">'+$newsurl1+'</a>');
-            $newsurl2 = result['data']['hits'][1]['url'];
-            $('#url2').html('<a class="url" href="'+ $newsurl2+'" target="_blank">'+$newsurl2+'</a>');
-            $newsurl3 = result['data']['hits'][2]['url'];
-            $('#url3').html('<a class="url" href="'+ $newsurl3+'" target="_blank">'+$newsurl3+'</a>');
-            $newsurl4 = result['data']['hits'][3]['url'];
-            $('#url4').html('<a class="url" href="'+ $newsurl4+'" target="_blank">'+$newsurl4+'</a>');
-            $newsurl5 = result['data']['hits'][4]['url'];
-            $('#url5').html('<a class="url" href="'+ $newsurl5+'" target="_blank">'+$newsurl5+'</a>');
-            $newsurl6 = result['data']['hits'][5]['url'];
-            $('#url6').html('<a class="url" href="'+ $newsurl6+'" target="_blank">'+$newsurl6+'</a>');
-
+                $newsTitle1 = result['data']['hits'][0]['title'];
+                $('#title1').html($newsTitle1);
+                $newsTitle2 = result['data']['hits'][1]['title'];
+                $('#title2').html($newsTitle2);
+                $newsTitle3 = result['data']['hits'][2]['title'];
+                $('#title3').html($newsTitle3);
+                $newsTitle4 = result['data']['hits'][3]['title'];
+                $('#title4').html($newsTitle4);
+                $newsTitle5 = result['data']['hits'][4]['title'];
+                $('#title5').html($newsTitle5);
+                $newsTitle6 = result['data']['hits'][5]['title'];
+                $('#title6').html($newsTitle6);
+                
+                $newsurl1 = result['data']['hits'][0]['url'];
+                $('#url1').html('<a class="url" href="'+ $newsurl1+'" target="_blank">'+$newsurl1+'</a>');
+                $newsurl2 = result['data']['hits'][1]['url'];
+                $('#url2').html('<a class="url" href="'+ $newsurl2+'" target="_blank">'+$newsurl2+'</a>');
+                $newsurl3 = result['data']['hits'][2]['url'];
+                $('#url3').html('<a class="url" href="'+ $newsurl3+'" target="_blank">'+$newsurl3+'</a>');
+                $newsurl4 = result['data']['hits'][3]['url'];
+                $('#url4').html('<a class="url" href="'+ $newsurl4+'" target="_blank">'+$newsurl4+'</a>');
+                $newsurl5 = result['data']['hits'][4]['url'];
+                $('#url5').html('<a class="url" href="'+ $newsurl5+'" target="_blank">'+$newsurl5+'</a>');
+                $newsurl6 = result['data']['hits'][5]['url'];
+                $('#url6').html('<a class="url" href="'+ $newsurl6+'" target="_blank">'+$newsurl6+'</a>');
+            }
+            }}});//PhotoSlide
+    }}});//countryPopup pic
+}}});//Country Borders
+}}});//country Lat Lng info 
     }}});//news
 
 }}}}})});//Country list info

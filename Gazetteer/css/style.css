@@ -77,7 +77,7 @@
 #capitalCityButton {
     left: 10px;
     position: absolute;
-    top: 140px;
+    top: 180px;
     background: white;
     opacity: 0.8;
     border-radius: 10px;
@@ -102,7 +102,7 @@
 #homeButton {
     left: 10px;
     position: absolute;
-    top: 80px;
+    top: 100px;
     background: white;
     opacity: 0.8;
     border-radius: 10px;
@@ -126,7 +126,7 @@
 #worldButton {
     left: 10px;
     position: absolute;
-    top: 200px;
+    top: 260px;
     background: white;
     opacity: 0.8;
     border-radius: 10px;
@@ -151,7 +151,7 @@
 #weatherButton {
     left: 10px;
     position: absolute;
-    top: 320px;
+    top: 420px;
     background: white;
     opacity: 0.8;
     border-radius: 10px;
@@ -170,10 +170,6 @@
     right: 8px;
     bottom: 2px;
     height: 40px;
-}
-
-#day2Weather {
-    font-size: 8px;
 }
 
 #dayOneWindIcon {
@@ -250,7 +246,7 @@
 
 .fiveDayWeatherBox {
     position: relative;
-    width: 50px;
+    width: 55px;
     background-color: white;
     border-radius: 5px;
     border: 1px solid black;
@@ -258,6 +254,8 @@
     margin: 9px;
     float: left;
     height: 225px;
+    margin-left: 35px;
+    left: -15px;
 }
 
 .weatherDate {
@@ -282,7 +280,7 @@
 #newsButton {
     left: 10px;
     position: absolute;
-    top: 380px;
+    top: 500px;
     background: white;
     opacity: 0.8;
     border-radius: 10px;
@@ -328,7 +326,6 @@
 }
 
 .news-article {
-    border: 1px solid black;
     font-size: 13px;
 }
 
@@ -361,7 +358,7 @@
 
 /*Exchange Rate*/
 #currencyButton {
-    top: 500px;
+    top: 660px;
     left: 10px;
     position: absolute;
     background: white;
@@ -454,7 +451,7 @@
 #covidButton {
     left: 10px;
     position: absolute;
-    top: 440px;
+    top: 580px;
     background: white;
     opacity: 0.8;
     border-radius: 10px;
@@ -544,7 +541,7 @@
 #photoButton {
     left: 10px;
     position: absolute;
-    top: 260px;
+    top: 340px;
     background: white;
     opacity: 0.8;
     border-radius: 10px;

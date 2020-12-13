@@ -2,7 +2,7 @@
 
 	$executionStartTime = microtime(true) / 1000;
 
-	$url='http://api.datanews.io/v1/headlines?apiKey=041sbnamsosy6lf21yvxjzve4&language=en&country=' . $_REQUEST['country'];
+	$url='http://worldclockapi.com/api/json/est/now';
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -24,6 +24,5 @@
 	header('Content-Type: application/json; charset=UTF-8');
 	header("Access-Control-Allow-Origin: *");
     echo json_encode($output); 
-    
 
 ?>
