@@ -339,7 +339,7 @@ $.ajax({
             console.log($condition);
             if($day2Condition === "Rain"){
                 $weatherDay2Icon = 'images/rainIcon.png'
-            } else if($$day2Condition === "Clear"){
+            } else if($day2Condition === "Clear"){
                 $weatherDay2Icon = 'images/sunIcon.png'
             } else if($day2Condition=== "Clouds"){
                 $weatherDay2Icon = 'images/cloudIcon.png'
@@ -388,6 +388,7 @@ $.ajax({
             $('#day5WeatherIcon').html('<img src="' +$weatherDay5Icon+ '" class="weatherIcon" />');
             $('#day5Text').html($day5Condition);
             console.log($day5Condition);
+
 
             $kelvin = result['data']['list'][0]['main']['temp'];
             $celsius = $kelvin - 273.15;
