@@ -1,0 +1,582 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap');
+
+#loading-image {
+    position: absolute;
+    top: 80px;
+    left: 70px;
+    width: 60px; 
+    height: 45px;
+    border-radius: 90px;
+}
+
+/*Map*/
+#map {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    bottom: 0px;
+    right: 0px;
+    z-index: -1;
+    overflow: hidden;
+    display: flex;
+    margin: 0px;
+    overflow-x: hidden;
+}
+
+#navBar {
+    width: 100%;
+    height: 70px;
+    background-color: #fffff5!important;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    overflow: hidden!important;
+    display: flex!important;
+    margin: 0px!important;
+    display: none;
+}
+
+#gazetteerTitle {
+    color: #EEE8AA;
+    font-family: 'Merriweather Sans', sans-serif;
+    margin-left: -10px;
+    letter-spacing: .1em;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-shadow: 2px 2px #000000;
+}
+
+#countrySelect {
+    float: right;
+    width: 50%;
+    margin-right: -20px;
+    top: 4px;
+    right: 5px;
+    visibility: visiable;
+}
+
+#countryPopupPic {
+    width: 200px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#flag {
+    width: 50%;
+}
+
+#countryPopupName {
+    font-size: 30px;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.leaflet-popup-content {
+    text-align: center;
+}
+
+#capitalCityButton {
+    left: 10px;
+    position: absolute;
+    top: 140px;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    width: 50px;
+    height: 50px;
+}
+
+#capitalCityIcon {
+    width: 40px;
+    position: relative;
+    right: 8px;
+    bottom: 5px;
+    height: 45px;
+    opacity: 0.8;
+}
+
+#capitalCityButton:hover {
+    background: lightgrey;
+}
+
+#homeButton {
+    left: 10px;
+    position: absolute;
+    top: 80px;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    width: 50px;
+    height: 50px;
+}
+
+#homeIcon {
+    width: 36px;
+    position: relative;
+    right: 7px;
+    bottom: 3%;
+    height: 30px;
+}
+
+#homeButton:hover {
+    background: lightgrey;
+}
+
+#worldButton {
+    left: 10px;
+    position: absolute;
+    top: 200px;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    width: 50px;
+    height: 50px;
+}
+
+#worldIcon {
+    width: 38px;
+    position: relative;
+    right: 8px;
+    bottom: 1px;
+    height: 38px;
+}
+
+#worldButton:hover {
+    background: lightgrey;
+}
+
+/*Weather*/
+#weatherButton {
+    left: 10px;
+    position: absolute;
+    top: 320px;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    width: 50px;
+    height: 50px;
+}
+
+#weatherButton:hover {
+    background: lightgrey;
+}
+
+#weatherIcon {
+    width: 40px;
+    position: relative;
+    right: 8px;
+    bottom: 2px;
+    height: 40px;
+}
+
+#dayOneWindIcon {
+    margin-bottom: -8px;
+    top: -11px;
+    position: relative;
+}
+
+#dayThreeWindIcon {
+    margin-bottom: -8px;
+    top: -2px;
+    position: relative;
+    height: 46px;
+}
+
+#dayFourWindIcon {
+    margin-bottom: -8px;
+    top: -2px;
+    position: relative;
+    height: 45px;
+}
+
+.weatherIcon {
+    width: 45px;
+    position: relative;
+    right: -2px;
+    bottom: 2px;
+    height: 45px;
+}
+
+#weatherBox {
+    position: absolute;
+    box-sizing: content-box;
+    top: 80px;
+    right: 10px;
+    width: 55px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black; 
+    min-height: 175px; 
+}
+
+.windIcon {
+    width: 40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.weatherIcon {
+    text-align: center;
+    font-size: 40px;
+    bottom: 5px;
+}
+
+.weatherTemp {
+    font-family: 'Merriweather Sans', sans-serif;
+    text-align: center;
+    font-size: 12px;
+}
+
+.weatherText {
+    font-family: 'Merriweather Sans', sans-serif;
+    text-align: center;
+    font-size: 11px;
+}
+
+.weatherWind {
+    font-family: 'Merriweather Sans', sans-serif;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.fiveDayWeatherBox {
+    position: relative;
+    width: 55px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+    min-height: 180px;
+    margin: 9px;
+    float: left;
+    height: 225px;
+    margin-left: 35px;
+    left: -15px;
+}
+
+.weatherDate {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 11px;
+    text-align: center;
+    top: 13px;
+    position: relative;
+}
+
+#weather-body {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+
+#weather-content {
+    top: 72px;
+}
+
+/*News*/
+#newsButton {
+    left: 10px;
+    position: absolute;
+    top: 380px;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    width: 50px;
+    height: 50px;
+}
+
+#newsIcon {
+    width: 36px;
+    position: relative;
+    right: 6px;
+    bottom: 3%;
+    height: 30px;
+}
+
+#newsButton:hover {
+    background: lightgrey;
+}
+
+#news-body {
+    max-height: 360px;
+    overflow: scroll;
+    float: left;
+}
+
+#news-content {
+    margin-top: 70px;
+    height: 500px;
+}
+
+#exampleModalLabel {
+    font-size: 20px;
+    font-family: 'Merriweather Sans', sans-serif;
+    margin-left: auto;
+}
+
+#newsPics1, #newsPics2, #newsPics3, #newsPics4, #newsPics5, #newsPics6 {
+    width: 120px;
+    height: 87px;
+    position: relative;
+    float: left;
+}
+
+.news-article {
+    font-size: 13px;
+}
+
+.titles {
+    font-weight: bold;
+    font-size: 14px;
+    position: relative;
+    font-family: 'Merriweather Sans', sans-serif;
+    top: 9px;
+    left: 4px;
+}
+
+#newsContent {
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.url {
+    display: table;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 10px;
+}
+
+#close-button {
+    font-size: 15px;
+    width: 65px;
+}
+
+/*Exchange Rate*/
+#currencyButton {
+    top: 500px;
+    left: 10px;
+    position: absolute;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    width: 50px;
+    height: 50px;
+}
+
+#currencyButton:hover {
+    background: lightgrey;
+}
+
+#currencyIcon {
+    width: 42px;
+    position: relative;
+    right: 9px;
+    bottom: 5px;
+    height: 44px;
+}
+
+#curency-content {
+    top: 155px;
+}
+
+#ukRate {
+    background: white;
+    color: black;
+    border-radius: 10px;
+    display: inline-block;
+    height: 55px;
+    width: 120px;
+    margin-top: 15px;
+    margin-right: 16px;
+}
+
+#otherRate {
+    background: white;
+    color: black;
+    border-radius: 10px;
+    display: inline-block;
+    height: 55px;
+    width: 120px;
+    margin-top: 15px;
+}
+
+#currency-body {
+    background: rgb(3, 88, 161) 20%;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 20px;
+    color: white;
+    height: 130px;
+    text-align: center;
+    line-height: 55px;
+}
+
+#currencyHeader {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 20px;
+}
+
+#ukRateIcon {
+    width: 35px;
+    position: relative;
+    right: 3px;
+    bottom: 5px;
+    height: 35px;
+    border-radius: 30px;
+}
+
+#otherRateIcon {
+    width: 35px;
+    position: relative;
+    right: 3px;
+    bottom: 5px;
+    height: 35px;
+    border-radius: 30px;
+}
+
+/*Covid Info*/
+#covidHeader {
+    font-family: 'Merriweather Sans', sans-serif;
+    margin-left: -18px;
+    font-size: 20px;
+    position: relative;
+    bottom: 5px;
+}
+
+#covidButton {
+    left: 10px;
+    position: absolute;
+    top: 440px;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    width: 50px;
+    height: 50px;
+}
+
+#covidIcon {
+    width: 42px;
+    position: relative;
+    right: 9px;
+    top: -4px;
+    height: 44px;
+}
+
+#covidButton:hover {
+    background: lightgrey;
+}
+
+#covidNewDeaths, #deathsCountryTotal, #deathsWorldTotal {
+    font-size: 22px;
+    color: #DC143C;
+    font-weight: bold;
+    margin-left: 1px;
+    line-height: 2;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+#covidNewCases, #casesCountryTotal, #casesWorldTotal {
+    font-size: 22px;
+    color: 	#9ACD32;
+    font-weight: bold;
+    margin-left: 1px;
+    line-height: 2;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+#covid-dialog {
+    width: 100%;
+    margin-left: 15%;
+    font-size: 13px;
+    height: 100%;
+  }
+
+#covid-content {
+    width: 259px;
+    padding: 0 10px;
+    top: 100px;
+}
+
+.covid-body {
+    position: relative;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1rem;
+    margin: -15px;
+}
+
+.carousel {
+    position: relative;
+    background-color: grey;
+    height: 250px;
+}
+
+.carousel-inner {
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    width: 100%;
+}
+
+.carousel-item {
+    width: 100%;
+    height: 250px;
+    left: 1;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.d-block {
+    display: block !important;
+}
+
+#photoButton {
+    left: 10px;
+    position: absolute;
+    top: 260px;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    width: 50px;
+    height: 50px;
+}
+
+#photoIcon {
+    width: 40px;
+    position: relative;
+    right: 8px;
+    bottom: 3px;
+    height: 40px;
+}
+
+#photoButton:hover {
+    background: lightgrey;
+}
+
+#photo-dialog {
+    width: 100vw;
+    top: 12%;
+}
+
+#photo1, #photo2, #photo3 {
+    width: 100%;
+    height: 100%;
+} 
+
+.carousel-item {
+    width: 100%;
+    height: 250px;      
+}
+
+#modal-footer {
+    background: white;
+}
